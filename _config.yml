@@ -4,7 +4,7 @@ redcarpet:
   extensions: ["tables"]
 exclude: ["*.Rmd"]
 description: "blog"
-baseurl: ""
+url: http://krz.github.io
 
 
 
