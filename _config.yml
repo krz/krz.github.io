@@ -1,0 +1,11 @@
+name: Christoph Kurz
+markdown: redcarpet
+redcarpet:
+  extensions: ["tables"]
+exclude: ["*.Rmd"]
+description: "blog"
+baseurl: ""
+
+
+
+

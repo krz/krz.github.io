@@ -1,0 +1,8 @@
+---
+layout: post
+comments: true
+title: Welcome
+categories: r
+---
+
+knitr::opts_chunk$set(fig.path='{{ site.url }}/images/exploring-the-cars-dataset-')
