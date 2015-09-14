@@ -1,0 +1,9 @@
+base
+xgboost
+Matrix
+arules
+lattice
+ggplot2
+caret
+gplots
+ROCR
