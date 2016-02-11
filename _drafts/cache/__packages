@@ -8,3 +8,5 @@ ggplot2
 caret
 gplots
 ROCR
+RevoUtilsMath
+rstan
