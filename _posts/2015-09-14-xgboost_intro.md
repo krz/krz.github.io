@@ -108,7 +108,6 @@ auc <- performance(auc.tmp, "tpr", "fpr")
 plot(auc,col=rainbow(10))
 ```
 
-![plot of chunk unnamed-chunk-12]({{ site.url }}/images/exploring-the-cars-dataset-unnamed-chunk-12-1.png)
 ![](/images/exploring-the-cars-dataset-unnamed-chunk-12-1.png) 
 
 ## A more advanced model
