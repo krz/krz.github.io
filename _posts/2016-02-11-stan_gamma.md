@@ -99,5 +99,4 @@ Let's see a trace plot of the MCMC chains:
 traceplot(m)
 ```
 
-![plot of chunk unnamed-chunk-5]({{ site.url }}/images/stangamma1unnamed-chunk-5-1.png)
 ![](/images/stangamma1unnamed-chunk-5-1.png)
