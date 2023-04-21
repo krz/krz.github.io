@@ -1,17 +1,13 @@
 ---
 layout: post
-comments: true
 title: A short Xgboost introduction
 categories: r
 ---
 
-
-
-## Installation
-
 `Xgboost` is short for eXtreme Gradient Boosting and currently one of best machine learning packages available for R. It is [fast, memory efficient and can handle huge amounts of data](https://github.com/szilard/benchm-ml) and won several [kaggle competitions.](http://blog.kaggle.com/2015/08/26/avito-winners-interview-1st-place-owen-zhang/).
 `Xgboost` is now on CRAN and can be installed from there.
 
+## Installation
 
 ```r
 library(xgboost)
