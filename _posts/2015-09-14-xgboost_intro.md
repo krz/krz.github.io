@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A short Xgboost introduction
-categories: r
+categories: [r, machine learning]
 ---
 
 `Xgboost` is short for eXtreme Gradient Boosting and currently one of best machine learning packages available for R. It is [fast, memory efficient and can handle huge amounts of data](https://github.com/szilard/benchm-ml) and won several [kaggle competitions.](http://blog.kaggle.com/2015/08/26/avito-winners-interview-1st-place-owen-zhang/).
@@ -108,7 +108,8 @@ auc <- performance(auc.tmp, "tpr", "fpr")
 plot(auc,col=rainbow(10))
 ```
 
-![plot of chunk unnamed-chunk-12]({{ site.url }}/images/exploring-the-cars-dataset-unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12]({{ site.url }}/images/exploring-the-cars-dataset-unnamed-chunk-12-1.png)
+![](/images/exploring-the-cars-dataset-unnamed-chunk-12-1.png) 
 
 ## A more advanced model
 
