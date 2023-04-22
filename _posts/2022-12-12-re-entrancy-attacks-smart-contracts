@@ -74,3 +74,29 @@ Let's go through the steps of this attack in more detail:
 5. Here the loop starts between `receive()` and `withdrawAll()` until all funds are drained.
 6. The loop.
 7. Only after all funds are drained, `balances` is set to 0.
+
+## What would a safe implementation of EOABank look like?
+
+```solidity
+contract EOABank {
+
+    mapping(address => uint) public balances;
+
+    function deposit() public payable {
+        balances[msg.sender] += msg.value;
+    }
+
+    function withdrawAll() public {
+        // save balances in new variable
+        uint256 bal = balances[msg.sender];
+        // reset balances
+        balances[msg.sender] = 0;
+        // transfer
+        (bool success, ) = msg.sender.call{ value: bal }("");
+        require(success, "Transaction failed!");
+    }
+}
+```
+
+Notice the difference. First, the `balances` value is saved in a new variable `bal`. Second, the `balances` are set to 0 before transferring the value. In this way, **EOABank** is safe from Re-entrancy attacks.
+```
