@@ -29,7 +29,7 @@ ys = f(xs)
 plt.plot(xs, ys)
 ```
 
-Let's now talk about derivatives. What does the derivative of a function tell you? If you head over to the [Wikipedia](https://en.wikipedia.org/wiki/Derivative) page of Derivatives it says that *the derivative of a function measures the sensitivity to change of the function value (output value) with respect to a change in its argument (input value).* This means the derivative describes what happens if you add a very small number \(h\) to \(x\), how the function responds and by how much. Does the function go up or down, and how sensitive is it to such changes? This is equivalent to the slope of the tangent line at a given point .
+Let's now talk about derivatives. What does the derivative of a function tell you? If you head over to the [Wikipedia](https://en.wikipedia.org/wiki/Derivative) page of Derivatives it says that *the derivative of a function measures the sensitivity to change of the function value (output value) with respect to a change in its argument (input value).* This means the derivative describes what happens if you add a very small number \( h \) to \(x\), how the function responds and by how much. Does the function go up or down, and how sensitive is it to such changes? This is equivalent to the slope of the tangent line at a given point \( x \).
 
 This means if we know the derivatives, we know how to change the inputs (better: the weights and biases) in a neural network to match a desired output. This is how a neural network is trained.
 
