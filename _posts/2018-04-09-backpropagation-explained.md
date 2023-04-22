@@ -28,6 +28,7 @@ xs = np.arange(-3, 4, 0.2)
 ys = f(xs)
 plt.plot(xs, ys)
 ```
+[](/images/function_plot.png)
 
 Let's now talk about derivatives. What does the derivative of a function tell you? If you head over to the [Wikipedia](https://en.wikipedia.org/wiki/Derivative) page of Derivatives it says that *the derivative of a function measures the sensitivity to change of the function value (output value) with respect to a change in its argument (input value).* This means the derivative describes what happens if you add a very small number \\(h\\) to \\(x\\), how the function responds and by how much. Does the function go up or down, and how sensitive is it to such changes? This is equivalent to the slope of the tangent line at a given point \\(x\\).
 
@@ -156,6 +157,7 @@ L = e * f
 ```
 
 A graph of this function looks like this:
+[](/images/backprop_graph.png)
 
 Let's now calculate the derivatives. Calculating the derivative of \\(L\\) with respect to \\(L\\) is easy:
 
