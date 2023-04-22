@@ -1,3 +1,9 @@
+---
+layout: post
+title: Re-entrancy attacks in Smart Contracts
+categories: [smart contracts]
+---
+
 I've been playing around with smart contracts recently. In this post I explain a re-entrancy attacks, a common security flaw in many smart contracts Re-entrancy attacks occur when a smart contract function temporarily abandons the transaction's control flow by making an external call to a contract written by unknown or hostile actors. This allows the latter contract to make a recursive call to the primary smart contract function to drain its funds.
 
 The steps in this attack are as follows:
