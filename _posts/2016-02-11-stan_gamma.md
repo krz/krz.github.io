@@ -100,5 +100,3 @@ traceplot(m)
 ![](/images/stangamma1unnamed-chunk-5-1.png)
 
 Looks like a nice caterpillar plot, all good.
-
-$$\alpha \beta \frac{a}{b}$$
