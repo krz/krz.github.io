@@ -105,4 +105,3 @@ contract EOABank {
 ```
 
 Notice the difference. First, the `balances` value is saved in a new variable `bal`. Second, the `balances` are set to 0 before transferring the value. In this way, **EOABank** is safe from Re-entrancy attacks.
-```
