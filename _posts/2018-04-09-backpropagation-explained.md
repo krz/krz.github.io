@@ -84,7 +84,7 @@ h = 0.000000001
 # 0.0
 ```
 
-Let us now expand this to a more complicated example. We assume three input values \\(a\\), \\(b\\), and \\(c\\), and one output, \\(d\\), defined as \\(d=a\cdotb+c\\):
+Let us now expand this to a more complicated example. We assume three input values \\(a\\), \\(b\\), and \\(c\\), and one output, \\(d\\), defined as \\(d=a\cdot b+c\\):
 
 ```python
 h = 0.0001
