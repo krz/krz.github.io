@@ -183,6 +183,54 @@ Ok, but what about going back one step in the graph? Let us calculate the deriva
 # 1.9999999999997797
 ```
 
+As before, we see that \\(e\cdot f=-4.0\\) and \\(((e+h)\cdot f)\\) = -4.0002, the slope must negative (because adding \\(h\\) makes the output more negative). Accordingly, the slope of \\(L\\) with respect to \\(f\\) must be positive. In this multiplication example, we saw that the derivative of \\(f\\) with respect to \\(e\\) is \\(f\\) (=-2.0) and the derivative of \\(L\\) with respect to \\(f\\) is \\(e\\) (=2.0). This can be derived analytically as well:
 
+$$
+\frac{f(x+h)-f(x)}{h}=\frac{(e+h)\cdot f-(e\cdot f)}{h}=\frac{e\cdot f+h\cdot f-e\cdot f}{h}=\frac{h \cdot f}{h}=f
+$$
 
+Let's go another step backwards in the graph and calculate the derivative of \\(L\\) with respect to \\(d\\). We can do this using our well-known formula:
 
+```python
+(((d+h) + c) * f - (d + c) * f ) / h
+# -1.9999999999
+```
+
+While it's possible to do it that way for every node in our graph, there's a more elegant solution. This is the [Chain Rule](https://en.wikipedia.org/wiki/Chain_rule). The chain rule is a fundamental rule in calculus that allows us to calculate the derivative of a composite function. Let's say we have two functions, \\(f(x)\\) and \\(g(x)\\), where \\(g(x)\\) is the inner function and \\(f(x)\\) is the outer function. The composite function is then given by \\(f(g(x))\\). In other words, the derivative of the composite function  \\(f(g(x))\\) is equal to the derivative of the outer function evaluated at the inner function, multiplied by the derivative of the inner function. The chain rule is a powerful tool that allows us to find derivatives of complex functions by breaking them down into simpler parts. In our case, this means for the derivative of \\(L\\) with respect to \\(d\\):
+
+$$
+\frac{dL}{dd}=\frac{dL}{de} \cdot \frac{de}{dd}
+$$
+
+We have already calculated \\(\frac{dL}{de}\\), and \\(\frac{de}{dd}=1\\), therefore \\(\frac{dL}{dd}=-2\cdot 1=-2\\).
+
+Using the chain rule we can caculate the derivatives (or gradients) of all nodes in our graph, backwards starting from L. For example, to calculate \\(\frac{dL}{da}\\), we need to calculate \\(\frac{dL}{da}=\frac{dL}{de} \cdot \frac{de}{dd} \cdot \frac{dd}{da} = -2 \cdot 1 \cdot -2 = 4\\).
+We started with the output \\(L\\) and moved backwards to calculate the derivative of \\(L\\) with respect to \\(a\\).
+
+Hence the term **backpropagation**.
+
+Here's how you can do all of the above in few lines using pytorch:
+
+```python
+import torch
+a = torch.Tensor([3.0])
+a.requires_grad = True
+b = torch.Tensor([-2.0])
+b.requires_grad = True
+c = torch.Tensor([8.0])
+c.requires_grad = True
+d = a * b
+e = d + c
+f = torch.Tensor([-2.0])
+f.requires_grad = True
+# output
+L = e * f
+```
+
+```python
+# calculate the derivatives backwards from L
+L.backward()
+# show the derivative of dL/da
+a.grad.item()
+# 4.0
+```
