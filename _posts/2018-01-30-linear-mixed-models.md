@@ -11,7 +11,7 @@ But what exactly are fixed and random effects? In simple terms, fixed effects ar
 
 Linear mixed effects models allow researchers to model both fixed and random effects, which is essential when analyzing data with a complex structure. By accounting for the correlation between data points within each group or cluster, these models provide a flexible framework for modeling complex data structures.
 
-Furthermore, linear mixed effects models can be used in both experimental and observational studies. They allow researchers to examine how various factors influence the outcome of interest while controlling for other factors. This way, they can extract insights from data that might be difficult to analyze with other statistical models.
+Furthermore, [linear mixed effects models](https://en.wikipedia.org/wiki/Mixed_model) can be used in both experimental and observational studies. They allow researchers to examine how various factors influence the outcome of interest while controlling for other factors. This way, they can extract insights from data that might be difficult to analyze with other statistical models.
 
 Overall, linear mixed effects models are a powerful tool for researchers who need to analyze data with a complex structure. They provide a way to extract meaningful insights from data while accounting for the correlation between data points within each group or cluster.
 
@@ -24,8 +24,8 @@ One of the key advantages of Bayesian linear mixed effects models is their abili
 Another advantage of Bayesian linear mixed effects models is their ability to incorporate complex hierarchical structures. Bayesian models allow researchers to specify complex prior distributions over the parameters of the model, which can capture complex relationships between the fixed and random effects.
 
 Let's fit both a regular (frequentist) linear mixed model and a Bayesian one. I will use `lme4` for the frequentist, and `brms` for the Bayesian model.
-As the data, I use the `sleepstudy` data set in the `lme4` package.
-The dataset consists of individuals who participated in a sleep derivation study, where they had their normal amount of sleep on Day 0, and then were restricted to only 3 hours of sleep per night. The response variable, `Reaction`, measures the average reaction times in milliseconds (ms) on a series of tests given to each subject every day throughout the study.
+As the data set, I use the `sleepstudy` data included in the `lme4` package.
+This dataset consists of individuals who participated in a sleep derivation study, where they had their normal amount of sleep on day 0, and then were restricted to only 3 hours of sleep per night. The response variable, `Reaction`, measures the average reaction times in milliseconds (ms) on a series of tests given to each subject every day throughout the study.
 
 Interestingly, the results of the study showed that each subject's reaction time increased approximately linearly with the number of sleep-deprived days. However, what was even more interesting was that subjects varied in the slopes and intercepts of these relationships. This suggests that a model with random slopes and intercepts would be more appropriate for analyzing this dataset.
 
