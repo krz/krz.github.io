@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Fitting a Gamma GLM in Stan
-categories: r
+categories: [r, bayes]
 ---
 
 I've been playing around with the [Stan](http://mc-stan.org) probabilistic programming language for full Bayesian statistical inference lately. Stan has nice R interface in the `rstan` package.
