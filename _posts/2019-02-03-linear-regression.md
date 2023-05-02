@@ -135,3 +135,78 @@ plt.legend();
 ```
 
 ![](/images/dataplot_linreg.png)
+
+For this exercise, we train the model on the blue data points and try to predict the green points.
+This should be fairly easy, it's extending a line, right?
+
+The first step in creating a torch model is define the linear regression model class.
+In torch, almost everthing is a `Module` and we inherit from this class.
+
+
+```python
+# Create a Linear Regression model class
+class LinearRegressionModel(nn.Module): 
+    def __init__(self):
+        super().__init__() 
+        self.weights = nn.Parameter(torch.randn(1, dtype=torch.float), 
+                                   requires_grad=True) 
+
+        self.bias = nn.Parameter(torch.randn(1, dtype=torch.float), 
+                                requires_grad=True) 
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor: 
+        return self.weights * x + self.bias 
+```
+
+In this class, we defined both `weights` and `bias` and initilazed them randomly. We set `requires_grad=True` so the gradients can be updated during training. The `forward()` function returns the matrix multiplication (dot product) of `x` and the `weights`.
+
+Both `weights` and `bias` are initilized randomly, so far the model has not learned anything.
+Let's see what our untrained model with random weights predict on the test data:
+
+```python
+with torch.inference_mode(): 
+    y_preds = LinearRegressionModel()(X_test)
+y_preds
+# tensor([1.5488, 1.5455, 1.5422, 1.5390, 1.5357, 1.5324, 1.5292, 1.5259, 1.5226,
+#        1.5194, 1.5161, 1.5129, 1.5096, 1.5063, 1.5031, 1.4998, 1.4965, 1.4933,
+#        1.4900, 1.4868])
+```
+if we compare this with the true values, it's pretty far away
+
+```python
+y_test
+# tensor([1.4800, 1.4960, 1.5120, 1.5280, 1.5440, 1.5600, 1.5760, 1.5920, 1.6080,
+#         1.6240, 1.6400, 1.6560, 1.6720, 1.6880, 1.7040, 1.7200, 1.7360, 1.7520,
+#         1.7680, 1.7840])
+```
+
+Before we move on, I previously said that pytorch has a `Linear()` layer built in, but we haven't used it so far.
+Let's change this and modify our class to use the standard `torch.nn.Linear()`:
+
+
+```python
+class LinearRegressionModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        # Use nn.Linear() for creating the model parameters
+        self.linear_layer = nn.Linear(in_features=1, 
+                                      out_features=1)
+    
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.linear_layer(x)
+```
+If we check the model parameters, we see that this module has `weights` and `bias` already built in and initializes them randomly
+
+```python
+model = LinearRegressionModelV2()
+model, model_1.state_dict()
+# (LinearRegressionModelV2(
+#    (linear_layer): Linear(in_features=1, out_features=1, bias=True)
+#  ),
+#  OrderedDict([('linear_layer.weight', tensor([[-0.1230]])),
+#               ('linear_layer.bias', tensor([0.7478]))]))
+```
+
+```python
+
+```
