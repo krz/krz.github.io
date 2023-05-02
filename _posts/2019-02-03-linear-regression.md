@@ -199,7 +199,7 @@ If we check the model parameters, we see that this module has `weights` and `bia
 
 ```python
 model = LinearRegressionModel()
-model, model_1.state_dict()
+model, model.state_dict()
 # (LinearRegressionModel(
 #    (linear_layer): Linear(in_features=1, out_features=1, bias=True)
 #  ),
@@ -218,11 +218,11 @@ optimizer = torch.optim.SGD(params=model.parameters(), lr=0.01)
 ```
 Finally, we need to the define the training loop. In Pytorch, this involves the following
 
-1. **Forward pass** - The model passes the data the layer, executing the `forward()` function
-2. **Calculate the loss** - compare the predictions from the forwards pass and compare them with the actualy values
-3. **Zero the gradients** - set the gradients to zero so they can be recalculated. Otherwise they would be added up
-4. **Backpropagate the loss** - compute the gadient of the loss with respect to every model parameter
-5. **Update the gradients** - perform optimization step
+1. **Forward pass** - You pass the input data to the model and get the output. This is done by simply calling the model object with the input as an argument, e.g. `model = model(input)`. Internally, this executes the `forward()` function
+2. **Calculate the loss** - You calculate the loss (or error) between the output and the target (or label) using a loss function, e.g., `loss = criterion(output, target)`. PyTorch provides various loss functions in the `torch.nn module`.
+3. **Zero the gradients** - You set the gradients of all the model parameters to zero before the backward pass. This is because PyTorch accumulates gradients by default, so you need to clear them before each iteration. This is done by calling `model.zero_grad()` or `optimizer.zero_grad()`, where optimizer is an instance of a PyTorch optimizer class that updates the model parameters based on the gradients.
+4. **Backpropagate the loss** - You compute the gradients of all the model parameters with respect to the loss by calling `loss.backward()`. This uses automatic differentiation to efficiently calculate the gradients.
+5. **Update the gradients** - You update the model parameters using an optimization algorithm, such as stochastic gradient descent (SGD), Adam, etc. PyTorch provides various optimizers in the `torch.optim` module that implement different optimization algorithms. You need to create an optimizer object and pass it the model parameters and other hyperparameters, such as learning rate, weight decay, etc. Then you call `optimizer.step()` to update the parameters based on the gradients.
 
 ```python
 # define the epochs (how often the models sees the data)
