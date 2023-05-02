@@ -44,6 +44,7 @@ In neural networks, the weight matrix \\(A\\) is usually initialized randomly an
 
 First, let's do some matrix multiplication. This is how it works:
 
+![matrix multiplication](/images/matmul.gif)
 
 In torch, let's define two tensors (matrices) `A` and `B`:
 ```python
@@ -120,6 +121,7 @@ X_test, y_test = X[train_split:], y[train_split:]
 len(X_train), len(y_train), len(X_test), len(y_test)
 # (80, 80, 20, 20)
 ```
+and visualize
 
 ```python
 import matplotlib.pyplot as plt
@@ -131,3 +133,5 @@ plt.scatter(X_test, y_test, c='g', label='Testing data')
 # add the legend
 plt.legend();
 ```
+
+![](/images/dataplot_linreg.png)
