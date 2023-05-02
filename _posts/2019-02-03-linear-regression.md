@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Linear regression in Pytorch and Tensorflow
-categories: [python, machine learning]
+categories: [python, neural networks, machine learning]
 ---
 
 Regression is a statistical technique that helps you to estimate the relationship between a dependent variable and one or more independent variables.
@@ -75,4 +75,59 @@ torch.mm(X, W)
 # tensor([[15, 27],
 #         [ 6,  7],
 #         [26, 63]])
+```
+
+Ok, now we know how matrix multiplication works. Let's build a real linear regression model in pytorch now.
+First, create some data
+
+
+```python
+weight = 0.8
+bias = 0.2
+
+X = torch.arange(start=0, end=2, step=0.02)
+y = X * weight + bias
+```
+
+```python
+X
+# (tensor([0.0000, 0.0200, 0.0400, 0.0600, 0.0800, 0.1000, 0.1200, 0.1400, 0.1600,
+#          0.1800, 0.2000, 0.2200, 0.2400, 0.2600, 0.2800, 0.3000, 0.3200, 0.3400,
+#                                         ...
+#          1.6200, 1.6400, 1.6600, 1.6800, 1.7000, 1.7200, 1.7400, 1.7600, 1.7800,
+#          1.8000, 1.8200, 1.8400, 1.8600, 1.8800, 1.9000, 1.9200, 1.9400, 1.9600,
+#          1.9800]),
+```
+
+```python
+y
+# tensor([0.2000, 0.2160, 0.2320, 0.2480, 0.2640, 0.2800, 0.2960, 0.3120, 0.3280,
+#         0.3440, 0.3600, 0.3760, 0.3920, 0.4080, 0.4240, 0.4400, 0.4560, 0.4720,
+#                                         ...
+#          1.4960, 1.5120, 1.5280, 1.5440, 1.5600, 1.5760, 1.5920, 1.6080, 1.6240,
+#          1.6400, 1.6560, 1.6720, 1.6880, 1.7040, 1.7200, 1.7360, 1.7520, 1.7680,
+#          1.7840]))
+```
+
+Split the data into train and test set
+
+```python
+# Split into train and test
+train_split = int(0.8 * len(X)) # 80% of data used for training set, 20% for testing 
+X_train, y_train = X[:train_split], y[:train_split]
+X_test, y_test = X[train_split:], y[train_split:]
+
+len(X_train), len(y_train), len(X_test), len(y_test)
+# (80, 80, 20, 20)
+```
+
+```python
+import matplotlib.pyplot as plt
+plt.figure(figsize=(9, 6))
+# plot training data in blue
+plt.scatter(X_train, y_train, c='b', label='Training data')
+# plot test data in green
+plt.scatter(X_test, y_test, c='g', label='Testing data')
+# add the legend
+plt.legend();
 ```
