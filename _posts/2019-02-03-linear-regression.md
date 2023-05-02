@@ -188,7 +188,7 @@ Let's change this and modify our class to use the standard `torch.nn.Linear()`:
 class LinearRegressionModel(nn.Module):
     def __init__(self):
         super().__init__()
-        # Use nn.Linear() for creating the model parameters
+        # Use built-in nn.Linear() 
         self.linear_layer = nn.Linear(in_features=1, 
                                       out_features=1)
     
@@ -198,14 +198,136 @@ class LinearRegressionModel(nn.Module):
 If we check the model parameters, we see that this module has `weights` and `bias` already built in and initializes them randomly
 
 ```python
-model = LinearRegressionModelV2()
+model = LinearRegressionModel()
 model, model_1.state_dict()
-# (LinearRegressionModelV2(
+# (LinearRegressionModel(
 #    (linear_layer): Linear(in_features=1, out_features=1, bias=True)
 #  ),
 #  OrderedDict([('linear_layer.weight', tensor([[-0.1230]])),
 #               ('linear_layer.bias', tensor([0.7478]))]))
 ```
+To train our model, we need to define the loss function and the optimizer. We use the `L1Loss` which corresponds to the mean absolute error (MAE).
+As an optimizer, we use stochastic gradient descent (SGD) with a learning rate of 0.01.
+
+```python
+# create loss function
+loss_fn = nn.L1Loss()
+
+# define optimizer
+optimizer = torch.optim.SGD(params=model.parameters(), lr=0.01)
+```
+Finally, we need to the define the training loop. In Pytorch, this involves the following
+
+1. **Forward pass** - The model passes the data the layer, executing the `forward()` function
+2. **Calculate the loss** - compare the predictions from the forwards pass and compare them with the actualy values
+3. **Zero the gradients** - set the gradients to zero so they can be recalculated. Otherwise they would be added up
+4. **Backpropagate the loss** - compute the gadient of the loss with respect to every model parameter
+5. **Update the gradients** - perform optimization step
+
+```python
+# define the epochs (how often the models sees the data)
+epochs = 500 
+
+device = "cpu"
+# Put data on the device
+# Reshape the data with unsqueeze, required for the Linear module
+X_train = X_train.unsqueeze(dim=1).to(device)
+X_test = X_test.unsqueeze(dim=1).to(device)
+y_train = y_train.unsqueeze(dim=1).to(device)
+y_test = y_test.unsqueeze(dim=1).to(device)
+
+for epoch in range(epochs):
+    ### Training
+    model.train()
+
+    # 1. Forward pass
+    y_pred = model(X_train)
+
+    # 2. Calculate loss
+    loss = loss_fn(y_pred, y_train)
+
+    # 3. Zero grad optimizer
+    optimizer.zero_grad()
+
+    # 4. Loss backward
+    loss.backward()
+
+    # 5. Perform optimization step
+    optimizer.step()
+
+    ### Testing
+    model.eval() # inference
+    # 1. Forward pass
+    with torch.inference_mode():
+        test_pred = model(X_test)
+    
+        # 2. Calculate the loss
+        test_loss = loss_fn(test_pred, y_test)
+        
+    # print loss every 100 epochs
+    if epoch % 100 == 0:
+        print(f"Epoch: {epoch} | Train loss: {loss} | Test loss: {test_loss}")
+        
+# Epoch: 0 | Train loss: 0.8663485646247864 | Test loss: 2.121262311935425
+# Epoch: 100 | Train loss: 0.2715910077095032 | Test loss: 0.6603046655654907
+# Epoch: 200 | Train loss: 0.17166011035442352 | Test loss: 0.3427932560443878
+# Epoch: 300 | Train loss: 0.08071128278970718 | Test loss: 0.15863864123821259
+# Epoch: 400 | Train loss: 0.004712129943072796 | Test loss: 0.01894279755651951
+# Epoch: 500 | Train loss: 0.004712129943072796 | Test loss: 0.01894279755651951
+```
+We see that the model converged after around 400 epochs.
+Again we can check the learned parameters `weights` and `bias`
+
+```python
+model.state_dict()
+# OrderedDict([('linear_layer.weight', tensor([[0.8005]])), ('linear_layer.bias', tensor([0.2043]))])
+```
+Remember that we generated the data with `weights=0.8` and `bias=0.2` so this is pretty close!
+
+Finally, let's make predictions
+```python
+# activate evaluation mode
+model.eval()
+
+# predict on the test data
+with torch.inference_mode():
+    y_preds = model(X_test)
+y_preds
+# tensor([[1.4851],
+#         [1.5011],
+#         [1.5171],
+#         [1.5331],
+#         [1.5491],
+#         [1.5652],
+#         [1.5812],
+#         [1.5972],
+#         [1.6132],
+#         [1.6292],
+#         [1.6452],
+#         [1.6612],
+#         [1.6772],
+#         [1.6932],
+#         [1.7092],
+#         [1.7253],
+#         [1.7413],
+#         [1.7573],
+#         [1.7733],
+#         [1.7893]])
+```
+Visualize the predictions
+
+```python
+plt.figure(figsize=(9, 6))
+# Plot training data in blue
+plt.scatter(X_train, y_train, c='b', label='Training data')
+# Plot test data in green
+plt.scatter(X_test, y_test, c='g', label='Testing data')
+# Plot predictions in red
+plt.scatter(X_test, y_preds, c='r', label='Predictions')
+# Show the legend
+plt.legend();
+```
+![](/images/preds_linreg.png)
 
 ```python
 
