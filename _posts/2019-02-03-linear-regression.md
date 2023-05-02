@@ -42,7 +42,7 @@ $$
 Here, \\(b\\) would be the bias (same as \\(\varepsilon\\) above), and \\(y\\) is the outcome.
 In neural networks, the weight matrix \\(A\\) is usually initialized randomly and gets adjusted as the networks learns to better represent patterns in the data.
 
-First, let's do some matrix multiplication. This is how it works:
+First, recall how matrix multiplication works. This animation illustrates it:
 
 ![matrix multiplication](/images/matmul.gif)
 
@@ -78,8 +78,8 @@ torch.mm(X, W)
 #         [26, 63]])
 ```
 
-Ok, now we know how matrix multiplication works. Let's now build a real linear regression model in PyTorch.
-First, create some data
+Ok, now we know how matrix multiplication works. Using this knowledge, let's now build a real linear regression model in PyTorch.
+First, create some data. We define fixed values for the `weight` and `bias` parameters. These are variables our model should learn later on.
 
 
 ```python
@@ -121,7 +121,8 @@ X_test, y_test = X[train_split:], y[train_split:]
 len(X_train), len(y_train), len(X_test), len(y_test)
 # (80, 80, 20, 20)
 ```
-and visualize
+We have 80 samples in the training set and 20 in the test set. 
+Visualize the data:
 
 ```python
 import matplotlib.pyplot as plt
@@ -162,7 +163,7 @@ class LinearRegressionModel(nn.Module):
 In this class, we defined both `weights` and `bias` and initilazed them randomly. We set `requires_grad=True` so the gradients can be updated during training. The `forward()` function returns the matrix multiplication (dot product) of `x` and the `weights`.
 
 Both `weights` and `bias` are initilized randomly, so far the model has not learned anything.
-Let's see what our untrained model with random weights predict on the test data:
+Let's see what our untrained model with random weights predicts on the test data:
 
 ```python
 with torch.inference_mode(): 
@@ -196,7 +197,7 @@ class LinearRegressionModel(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.linear_layer(x)
 ```
-If we check the model parameters, we see that this module has `weights` and `bias` already built in and initializes them randomly
+If we check the model parameters, we see that this module has `weights` and `bias` already built in and initializes them randomly:
 
 ```python
 model = LinearRegressionModel()
@@ -210,7 +211,7 @@ model, model.state_dict()
 Remember that the true values for `weight` and `bias` were 0.8 and 0.2, respectively. The random values are pretty far off, it's not surprising the predictions are bad.
 
 To train our model, we need to define the loss function and the optimizer. We use the `L1Loss` which corresponds to the mean absolute error (MAE).
-As an optimizer, we use stochastic gradient descent (SGD) with a learning rate of 0.01.
+As an optimizer, we use stochastic gradient descent (SGD) with a learning rate of 0.01. This value is usually a good starting point.
 
 ```python
 # create loss function
@@ -219,7 +220,7 @@ loss_fn = nn.L1Loss()
 # define optimizer
 optimizer = torch.optim.SGD(params=model.parameters(), lr=0.01)
 ```
-Finally, we need to the define the training loop. In Pytorch, this involves the following
+Finally, we need to the define the training loop. In PyTorch, this involves the following steps:
 
 1. **Forward pass** - You pass the input data to the model and get the output. This is done by simply calling the model object with the input as an argument, e.g. `model = model(input)`. Internally, this executes the `forward()` function
 2. **Calculate the loss** - You calculate the loss (or error) between the output and the target (or label) using a loss function, e.g., `loss = criterion(output, target)`. PyTorch provides various loss functions in the `torch.nn module`.
@@ -280,8 +281,8 @@ for epoch in range(epochs):
 # Epoch: 400 | Train loss: 0.004712129943072796 | Test loss: 0.01894279755651951
 # Epoch: 500 | Train loss: 0.004712129943072796 | Test loss: 0.01894279755651951
 ```
-We see that the model converged after around 400 epochs.
-Again we can check the learned parameters `weights` and `bias`
+We see that the model converged after around 400 epochs as the test loss does not change any more.
+Again we can check the learned parameters `weight` and `bias`:
 
 ```python
 model.state_dict()
