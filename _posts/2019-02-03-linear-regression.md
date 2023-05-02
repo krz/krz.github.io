@@ -8,12 +8,12 @@ Regression is a statistical technique that helps you to estimate the relationshi
 It is basically the simplest machine learning algorithm you can imagine.
 For example, you can use regression to find out how the price of a house depends on its size, location, number of rooms, etc.
 
-There are different types of regression, such as linear regression, logistic regression, nonlinear regression, etc. 
+There are different types of regression, such as [linear regression](https://en.wikipedia.org/wiki/Linear_regression), [logistic regression](https://en.wikipedia.org/wiki/Logistic_regression), nonlinear regression, etc. 
 Each type has its own assumptions and methods of fitting the data. 
-In this article, I will focus on simple linear regression, which is the simplest and most common type of regression.
+In this article, I will focus on linear regression, which is the simplest and most common type of regression.
 
 Simple linear regression assumes that there is a linear relationship between the dependent variable and the independent variable, i.e., 
-the data points can be approximated by a straight line1. The equation of this line is:
+the data points can be approximated by a straight line. The equation of this line is:
 
 $$
 y = \beta_o + \beta_1 x + \varepsilon
@@ -32,7 +32,7 @@ i.e., the sum of the squares of ϵ for all data points.
 This can be done using various methods, such as ordinary least squares (OLS), gradient descent, etc.
 Here, we will use the two deep learning libraries `pytorch` and `tensorflow`.
 
-Pytorch has the `torch.nn.Linear()` module, also known as a feed-forward layer or fully connected layer, for this task.
+PyTorch has the `torch.nn.Linear()` module, also known as a feed-forward layer or fully connected layer, for this task.
 This layer implements a matrix multiplication between an input \\(x\\) and a weights matrix \\(W\\):
 
 $$
