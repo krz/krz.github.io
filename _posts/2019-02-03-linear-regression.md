@@ -40,7 +40,7 @@ y = x\cdot W^T + b
 $$
 
 Here, \\(b\\) would be the bias (same as \\(\varepsilon\\) above), and \\(y\\) is the outcome.
-In neural networks, the weight matrix \\(A\\) is usually initialized randomly and gets adjusted as the networks learns to better represent patterns in the data.
+In neural networks, the weight matrix \\(W\\) is usually initialized randomly and gets adjusted as the networks learns to better represent patterns in the data.
 
 First, recall how matrix multiplication works. This animation illustrates it:
 
