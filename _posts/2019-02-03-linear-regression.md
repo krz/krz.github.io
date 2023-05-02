@@ -46,7 +46,7 @@ First, let's do some matrix multiplication. This is how it works:
 
 ![matrix multiplication](/images/matmul.gif)
 
-In torch, let's define two tensors (matrices) `A` and `B`:
+In PyTorch, let's define two tensors (matrices) `A` and `B`:
 ```python
 import torch
 
@@ -59,7 +59,7 @@ B = torch.tensor([[2, 5],
                   [1, 8]])
 ```
 
-Matrix multiplication (aka the dot product) can be done in torch in several ways:
+Matrix multiplication (aka the dot product) can be done in PyTorch in several ways:
 
 ```python
 X @ W
@@ -78,7 +78,7 @@ torch.mm(X, W)
 #         [26, 63]])
 ```
 
-Ok, now we know how matrix multiplication works. Let's build a real linear regression model in pytorch now.
+Ok, now we know how matrix multiplication works. Let's now build a real linear regression model in PyTorch.
 First, create some data
 
 
@@ -140,10 +140,11 @@ For this exercise, we train the model on the blue data points and try to predict
 This should be fairly easy, it's extending a line, right?
 
 The first step in creating a torch model is define the linear regression model class.
-In torch, almost everthing is a `Module` and we inherit from this class.
+In PyTorch, almost everything is a `Module` and we inherit from this class.
 
 
 ```python
+from torch import nn
 # Create a Linear Regression model class
 class LinearRegressionModel(nn.Module): 
     def __init__(self):
@@ -231,6 +232,8 @@ Finally, we need to the define the training loop. In Pytorch, this involves the 
 epochs = 500 
 
 device = "cpu"
+# alternatively
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Put data on the device
 # Reshape the data with unsqueeze, required for the Linear module
 X_train = X_train.unsqueeze(dim=1).to(device)
