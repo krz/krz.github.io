@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linear regression in Pytorch and Tensorflow
+title: Linear regression in Pytorch
 categories: [python, neural networks, machine learning]
 ---
 
@@ -206,6 +206,8 @@ model, model.state_dict()
 #  OrderedDict([('linear_layer.weight', tensor([[-0.1230]])),
 #               ('linear_layer.bias', tensor([0.7478]))]))
 ```
+Remember that the true values for `weight` and `bias` were 0.8 and 0.2, respectively. The random values are pretty far off, it's not surprising the predictions are bad.
+
 To train our model, we need to define the loss function and the optimizer. We use the `L1Loss` which corresponds to the mean absolute error (MAE).
 As an optimizer, we use stochastic gradient descent (SGD) with a learning rate of 0.01.
 
@@ -329,6 +331,5 @@ plt.legend();
 ```
 ![](/images/preds_linreg.png)
 
-```python
 
-```
+The predictions are almost spot on!
