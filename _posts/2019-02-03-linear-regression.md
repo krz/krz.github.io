@@ -24,7 +24,7 @@ where:
 * \\(y\\) is the dependent variable
 * \\(x\\) is the independent variable
 * \\(\beta_0\\) is the intercept term, i.e. the value of \\(y\\) when \\(x\\) is zero
-* \\(beta_1\\) is the slope term, i.e., the change in \\(y\\) when \\(x\\) changes by one unit
+* \\(\beta_1\\) is the slope term, i.e., the change in \\(y\\) when \\(x\\) changes by one unit
 * \\(\varepsilon\\) is the error term, i.e. the difference between the actual and predicted values of \\(y\\)
 
 The goal of simple linear regression is to find the values of \\(\beta_0\\) and \\(\beta_1\\) that minimize the sum of squared errors (SSE), 
