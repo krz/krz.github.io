@@ -344,7 +344,7 @@ The predictions are almost spot on!
 ## Tensorflow
 
 For completeness, let's fit the same model in Tensorflow.
-Through the keras API, fitting as linear model is super simple:
+Through the keras API, fitting a linear model is super simple:
 
 ```python
 import tensorflow as tf
