@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linear regression in PyTorch
+title: Linear regression in PyTorch and Tensorflow
 categories: [python, neural networks, machine learning]
 ---
 
