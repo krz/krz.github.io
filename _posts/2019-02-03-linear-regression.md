@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linear regression in Pytorch
+title: Linear regression in PyTorch
 categories: [python, neural networks, machine learning]
 ---
 
@@ -30,7 +30,8 @@ where:
 The goal of simple linear regression is to find the values of \\(\beta_0\\) and \\(\beta_1\\) that minimize the sum of squared errors (SSE), 
 i.e., the sum of the squares of ϵ for all data points. 
 This can be done using various methods, such as ordinary least squares (OLS), gradient descent, etc.
-Here, we will use the two deep learning libraries `pytorch` and `tensorflow`.
+Here, we will use the two deep learning libraries `
+` and `tensorflow`.
 
 PyTorch has the `torch.nn.Linear()` module, also known as a feed-forward layer or fully connected layer, for this task.
 This layer implements a matrix multiplication between an input \\(x\\) and a weights matrix \\(W\\):
@@ -140,6 +141,8 @@ plt.legend();
 For this exercise, we train the model on the blue data points and try to predict the green points.
 This should be fairly easy, it's extending a line, right?
 
+## PyTorch
+
 The first step in creating a torch model is define the linear regression model class.
 In PyTorch, almost everything is a `Module` and we inherit from this class.
 
@@ -182,7 +185,7 @@ y_test
 #         1.7680, 1.7840])
 ```
 
-Before we move on, I previously said that pytorch has a `Linear()` layer built in, but we haven't used it so far.
+Before we move on, I previously said that PyTorch has a `Linear()` layer built in, but we haven't used it so far.
 Let's change this and modify our class to use the standard `torch.nn.Linear()`:
 
 
@@ -337,3 +340,58 @@ plt.legend();
 
 
 The predictions are almost spot on!
+
+## Tensorflow
+
+For completeness, let's fit the same model in Tensorflow.
+Through the keras API, fitting as linear model is super simple:
+
+```python
+import tensorflow as tf
+
+model_tf = tf.keras.Sequential([
+  tf.keras.layers.Dense(1)
+])
+
+# Compile the model
+model_tf.compile(loss=tf.keras.losses.mae,
+                optimizer=tf.keras.optimizers.SGD(),
+                metrics=['mae'])
+
+# Fit the model
+model_tf.fit(tf.expand_dims(tf.convert_to_tensor(X_train.numpy()), axis=-1), y_train.numpy(), epochs=300, verbose=1) 
+
+# Epoch 298/300
+# 3/3 [==============================] - 0s 4ms/step - loss: 0.0080 - mae: 0.0080
+# Epoch 299/300
+# 3/3 [==============================] - 0s 4ms/step - loss: 0.0088 - mae: 0.0088
+# Epoch 300/300
+# 3/3 [==============================] - 0s 5ms/step - loss: 0.0077 - mae: 0.0077
+```
+
+Tensorflow has a `Dense` layer that's quite similar to the `Linear` layer in PyTorch. 
+Note that Tensorflow also requires an extra dimension for the training data (`tf.expand_dims`).
+To convert the data from PyTorch to Tensorflow, I first made them a numpy array.
+
+Let's predict from this Tensorflow model:
+
+```python
+y_preds_tf = model_tf.predict(X_test.numpy())
+```
+and plot the results:
+
+```python
+plt.figure(figsize=(9, 6))
+# Plot training data in blue
+plt.scatter(X_train, y_train, c='b', label='Training data')
+# Plot test data in green
+plt.scatter(X_test, y_test, c='g', label='Testing data')
+# Plot predictions in red
+plt.scatter(X_test, y_preds_tf, c='r', label='Predictions TF')
+# Show the legend
+plt.legend();
+```
+
+![](/images/linreg_preds_tf.png)
+
+Also quite good!
