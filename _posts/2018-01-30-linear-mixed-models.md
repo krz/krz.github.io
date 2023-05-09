@@ -23,7 +23,7 @@ One of the key advantages of Bayesian linear mixed effects models is their abili
 
 Another advantage of Bayesian linear mixed effects models is their ability to incorporate complex hierarchical structures. Bayesian models allow researchers to specify complex prior distributions over the parameters of the model, which can capture complex relationships between the fixed and random effects.
 
-Let's fit both a regular (frequentist) linear mixed model and a Bayesian one. I will use `lme4` for the frequentist, and `brms` for the Bayesian model.
+Let's fit both a regular (frequentist) linear mixed model and a Bayesian one. I will use `lme4` for the frequentist, and `brms` for the Bayesian model. The `brms` package uses [Stan](https://krz.github.io/stan_gamma/) internally, but it's much easier to use.
 As the data set, I use the `sleepstudy` data included in the `lme4` package.
 This dataset consists of individuals who participated in a sleep derivation study, where they had their normal amount of sleep on day 0, and then were restricted to only 3 hours of sleep per night. The response variable, `Reaction`, measures the average reaction times in milliseconds (ms) on a series of tests given to each subject every day throughout the study.
 
