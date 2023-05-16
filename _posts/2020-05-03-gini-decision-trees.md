@@ -13,7 +13,7 @@ It is used to evaluate the quality of a split in a decision tree. A lower gini i
 The formula for gini impurity is:
 
 $$
-G = 1-\sum_{i=1}^n p_1^2
+G = 1-\sum_{i=1}^n p_i^2
 $$
 
 where \\(n\\) is the number of classes and \\(p_i\\) is the probability of an element belonging to class \((i\)).
@@ -62,7 +62,7 @@ rpart.plot(cfit)
 In this example, the first split is at the `grade` variable. If its value is below 3, it splits to to the left side of the tree and classifies to `No`.
 42% of the data, or 61 observations split to this left side.
 The Gini impurity for this node at depth 0 is: \\(1- (\frac{61}{146})^2 - (\frac{85}{146})^2 =0.469\\).
-The second split is at depth 1 at the `g2` variable. If it's below 13 it splits to the left and classifies to `No`, otherwise `Yes`.
+The second split is at depth 1 at the `g2` variable. If `g2` is below 13, it splits to the left and classifies to `No`, otherwise `Yes`.
 The Gini impurity for this node is: \\( 1- (\frac{40}{85}^2)-(\frac{45}{85})^2=0.498\\).
 
 Decision trees use gini impurity as a cost function for classification tasks to measure how well a node can classify the samples based on the given features. 
@@ -88,7 +88,7 @@ $$
 RSS=\sum_{i=1}^n(y_i -\hat y_i)
 $$
 
-where \\(y_i\\) is the observed value and \\(\hat y_i\\) is the predicted value by the model. A lower RSS indicates a bettre fir of the model to the data.
+where \\(y_i\\) is the observed value and \\(\hat y_i\\) is the predicted value by the model. A lower RSS indicates a better fit of the model to the data.
 
 
 
