@@ -44,8 +44,8 @@ This is the lowest possible gini impurity, meaning the node is perfectly pure or
 When splitting a node into two or more sub-nodes, we want to choose the split that minimizes the weighted average of the gini impurities of the sub-nodes. 
 This means we are looking for the split that creates the most pure or homogeneous sub-nodes.
 
-Let's illustrate this with a real example. We use the `stagec` data set with two classes, `Yes` and `No` in the `rpart` package for decision trees.
-We simplicity we set a `maxdepth=2` of the tree.
+Let's illustrate this with a real example. We use the `stagec` data set with two classes, `Yes` and `No` in the `rpart` package.
+For simplicity we set a `maxdepth=2` of the tree.
 
 ```r
 library(rpart)
@@ -59,7 +59,7 @@ rpart.plot(cfit)
 ```
 ![](/images/rpart.png)
 
-In this example, the first split is at the `grade` variable. It its value is below 3, it splits to to the left side the tree and classifies to `No`.
+In this example, the first split is at the `grade` variable. If its value is below 3, it splits to to the left side of the tree and classifies to `No`.
 42% of the data, or 61 observations split to this left side.
 The Gini impurity for this node at depth 0 is: \\(1- (\frac{61}{146})^2 - (\frac{85}{146})^2 =0.469\\).
 The second split is at depth 1 at the `g2` variable. If it's below 13 it splits to the left and classifies to `No`, otherwise `Yes`.
@@ -88,7 +88,7 @@ $$
 RSS=\sum_{i=1}^n(y_i -\hat y_i)
 $$
 
-
+where \\(y_i\\) is the observed value and \\(\hat y_i\\) is the predicted value by the model. A lower RSS indicates a bettre fir of the model to the data.
 
 
 
