@@ -16,7 +16,7 @@ $$
 G = 1-\sum_{i=1}^n p_i^2
 $$
 
-where \\(n\\) is the number of classes and \\(p_i\\) is the probability of an element belonging to class \((i\)).
+where \\(n\\) is the number of classes and \\(p_i\\) is the probability of an element belonging to class \\(i\\).
 For example, if we have a node with 10 red balls and 10 blue balls, the gini impurity of that node is:
 
 $$
@@ -61,7 +61,7 @@ rpart.plot(cfit)
 
 In this example, the first split is at the `grade` variable. If its value is below 3, it splits to to the left side of the tree and classifies to `No`.
 42% of the data, or 61 observations split to this left side.
-The Gini impurity for this node at depth 0 is: \\(1- (\frac{61}{146})^2 - (\frac{85}{146})^2 =0.469\\).
+The Gini impurity for this node at depth 0 is: \\(1- (\frac{61}{146})^2 - (\frac{85}{146})^2 =0.469.\\)
 The second split is at depth 1 at the `g2` variable. If `g2` is below 13, it splits to the left and classifies to `No`, otherwise `Yes`.
 The Gini impurity for this node is: \\( 1- (\frac{40}{85}^2)-(\frac{45}{85})^2=0.498\\).
 
