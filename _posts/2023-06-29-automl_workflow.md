@@ -1,3 +1,9 @@
+---
+layout: post
+title: R AutoML full workflow with tidymodels
+categories: [r, machine learning]
+---
+
 ```R
 suppressMessages(library(tidyverse))
 suppressMessages(library(tidymodels))
