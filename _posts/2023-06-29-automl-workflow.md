@@ -83,6 +83,31 @@ auto_recipe <-
 auto_recipe
 ```
 
+    [36m──[39m [1mRecipe[22m [36m──────────────────────────────────────────────────────────────────────[39m
+    
+    
+    
+    ── Inputs 
+    
+    Number of variables by role
+    
+    outcome:    1
+    predictor: 56
+    
+    
+    
+    ── Operations 
+    
+    [36m•[39m Bagged tree imputation for: [34mall_predictors()[39m
+    
+    [36m•[39m Correlation filter on: [34mall_numeric_predictors()[39m
+    
+    [36m•[39m Linear combination filter on: [34mall_numeric_predictors()[39m
+    
+    [36m•[39m Zero variance filter on: [34mall_predictors()[39m
+
+
+
 ### Workflow
 This is the full workflow with pre-processing and training. `h2o`
 internally evaluates the models in 10-fold cross-validation.
