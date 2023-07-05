@@ -132,6 +132,52 @@ The best model is a stacked ensemble of all 30 models with a logloss of __0.16__
 print(auto_res)
 ```
 
+══ Workflow [trained] ══════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: auto_ml()
+
+── Preprocessor ────────────────────────────────────────────────────────────────
+4 Recipe Steps
+
+• step_impute_bag()
+• step_corr()
+• step_lincomb()
+• step_zv()
+
+── Model ───────────────────────────────────────────────────────────────────────
+
+Leader Algorithm: stackedensemble
+
+Leader ID: StackedEnsemble_BestOfFamily_1_AutoML_1_20230705_70330
+
+═════════════════════════ H2O AutoML Summary: 32 models ════════════════════════ 
+
+Leader Algorithm: stackedensemble
+
+ 
+
+Leader ID: StackedEnsemble_BestOfFamily_1_AutoML_1_20230705_70330
+
+ 
+══════════════════════════════════ Leaderboard ═════════════════════════════════ 
+                                                model_id   logloss       auc
+1 StackedEnsemble_BestOfFamily_1_AutoML_1_20230705_70330 0.1585723 0.9683930
+2    StackedEnsemble_AllModels_1_AutoML_1_20230705_70330 0.1629910 0.9691752
+3         XGBoost_grid_1_AutoML_1_20230705_70330_model_4 0.1869239 0.9615713
+4         XGBoost_grid_1_AutoML_1_20230705_70330_model_5 0.1963171 0.9546314
+5                      XGBoost_2_AutoML_1_20230705_70330 0.1978969 0.9564051
+6                      XGBoost_3_AutoML_1_20230705_70330 0.1987732 0.9570963
+      aucpr mean_per_class_error      rmse        mse
+1 0.8946899           0.08179619 0.2117525 0.04483912
+2 0.8920815           0.10564469 0.2174633 0.04729029
+3 0.8663235           0.10999236 0.2258904 0.05102648
+4 0.8586601           0.11210252 0.2407249 0.05794847
+5 0.8427151           0.10817325 0.2389873 0.05711494
+6 0.8366848           0.10677254 0.2428506 0.05897642
+
+
+
+
 ### Predict
 Finally we predict on the test data and create a submission file. The preprocessing workflow will be automatically applied to the test data.
 
