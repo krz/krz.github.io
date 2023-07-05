@@ -4,6 +4,10 @@ title: R AutoML full workflow with tidymodels
 categories: [r, machine learning]
 ---
 
+AutoML is the process of automating the tasks of applying machine learning to real-world problems. I often use this approach as it requires very little investment in tuning models and the results are usually quite competitive.
+The following is a notebook for a recent [kaggle competition](https://www.kaggle.com/code/christph/automl-full-workflow).
+
+
 ```R
 suppressMessages(library(tidyverse))
 suppressMessages(library(tidymodels))
