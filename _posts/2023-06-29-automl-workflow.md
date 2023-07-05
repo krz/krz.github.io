@@ -1,6 +1,6 @@
 ---
 layout: post
-title: R AutoML full workflow with tidymodels
+title: AutoML full workflow with tidymodels
 categories: [r, machine learning]
 ---
 
