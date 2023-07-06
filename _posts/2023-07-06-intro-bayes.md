@@ -4,10 +4,6 @@ title: Introduction to Bayesian Data Analysis
 categories: [r, bayes]
 ---
 
-Here is a possible introduction for a blog post on an introduction to Bayesian statistics:
-
----
-
 Bayesian statistics is a powerful and elegant framework for data analysis that allows us to incorporate prior knowledge, uncertainty, and learning from data into our statistical reasoning. 
 In this entry, I will introduce the conceptual foundations of Bayesian data analysis and show how it can help us solve challenging problems that classical statistics may struggle with.
 
