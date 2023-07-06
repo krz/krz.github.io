@@ -25,9 +25,9 @@ To apply Bayesian inference, we need to define some terms:
 
 - Let __H__ be the __hypothesis__ that the door you initially picked has the car behind it.
 - Let __E__ be the __evidence__ that the host opened another door with a goat behind it.
-- Let P(H) be the __prior probability__ of H, i.e., the probability that you picked the right door before seeing any evidence.
-- Let P(E|H) be the __likelihood__ of E given H, i.e., the probability that the host opened another door with a goat behind it if you picked the right door.
-- Let P(H|E) be the __posterior probability__ of H given E, i.e., the probability that you picked the right door after seeing the evidence.
+- Let \\(P(H)\\) be the __prior probability__ of H, i.e., the probability that you picked the right door before seeing any evidence.
+- Let \\(P(E|H)\\) be the __likelihood__ of E given H, i.e., the probability that the host opened another door with a goat behind it if you picked the right door.
+- Let \\(P(H|E)\\) be the __posterior probability__ of H given E, i.e., the probability that you picked the right door after seeing the evidence.
 
 Using Bayes' theorem, we can write:
 
@@ -35,10 +35,10 @@ $$P(H|E) = \frac{P(E|H)P(H)}{P(E)}$$
 
 We can calculate each term as follows:
 
-- P(H) = 1/3, since there are three doors and only one has the car.
-- P(E|H) = 1/2, since if you picked the right door, the host can open either of the remaining doors with equal probability.
-- P(E) = 1/2, since regardless of your initial choice, there are two doors with goats and one with a car, and the host will always open one with a goat.
-- P(H|E) = (1/2)(1/3)/(1/2) = 1/3.
+- \\(P(H)\\) = 1/3, since there are three doors and only one has the car.
+- \\(P(E|H)\\) = 1/2, since if you picked the right door, the host can open either of the remaining doors with equal probability.
+- \\(P(E)\\) = 1/2, since regardless of your initial choice, there are two doors with goats and one with a car, and the host will always open one with a goat.
+- \\(P(H|E)\\) = (1/2)(1/3)/(1/2) = 1/3.
 
 Therefore, the posterior probability of your initial choice being correct is still 1/3, even after seeing the evidence. 
 This means that switching to the other remaining door will increase your probability of winning to 2/3, since there are only two possibilities left and one of them is wrong.
@@ -72,14 +72,16 @@ For example, suppose we want to model the test scores of students from different
 A hierarchical model for this problem would look something like this:
 
 $$\text{score}_{ij} \sim N(\text{ability}_i + \text{school effect}_j, \sigma^2)$$
+
 $$\text{ability}_i \sim N(\mu_a, \tau_a^2)$$
+
 $$\text{school effect}_j \sim N(\mu_s, \tau_s^2)$$
 
 where i indexes the students and j indexes the schools. 
 The score of each student is modeled as a normal distribution with a mean that depends on their ability and their school effect, and a variance that captures the measurement error. 
 The ability of each student is also modeled as a normal distribution with a mean and a variance that represent the overall ability level and variation across students. Similarly, the school effect of each school is modeled as a normal distribution with a mean and a variance that represent the overall school quality and variation across schools.
 
-This model has many parameters: the score variance $\sigma^2$, the ability mean and variance $\mu_a$ and $\tau_a^2$, and the school effect mean and variance $\mu_s$ and $\tau_s^2$. 
+This model has many parameters: the score variance \\(\sigma^2\\), the ability mean and variance \\(\mu_a\\) and \\(\tau_a^2\\), and the school effect mean and variance \\(\mu_s\\) and \\(\tau_s^2\\). 
 In addition, there are as many ability parameters as there are students, and as many school effect parameters as there are schools. How can we estimate these parameters from the data?
 
 Using Bayesian modeling, we can assign prior distributions to each parameter, reflecting our prior beliefs or assumptions about their values. 
