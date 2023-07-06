@@ -26,8 +26,8 @@ To apply Bayesian inference, we need to define some terms:
 - Let __H__ be the __hypothesis__ that the door you initially picked has the car behind it.
 - Let __E__ be the __evidence__ that the host opened another door with a goat behind it.
 - Let \\(P(H)\\) be the __prior probability__ of H, i.e., the probability that you picked the right door before seeing any evidence.
-- Let \\(P(E\midH)\\) be the __likelihood__ of E given H, i.e., the probability that the host opened another door with a goat behind it if you picked the right door.
-- Let \\(P(H\midE)\\) be the __posterior probability__ of H given E, i.e., the probability that you picked the right door after seeing the evidence.
+- Let \\(P(E\mid H)\\) be the __likelihood__ of E given H, i.e., the probability that the host opened another door with a goat behind it if you picked the right door.
+- Let \\(P(H\mid E)\\) be the __posterior probability__ of H given E, i.e., the probability that you picked the right door after seeing the evidence.
 
 Using Bayes' theorem, we can write:
 
@@ -36,9 +36,9 @@ $$P(H|E) = \frac{P(E|H)P(H)}{P(E)}$$
 We can calculate each term as follows:
 
 - \\(P(H)\\) = 1/3, since there are three doors and only one has the car.
-- \\(P(E\midH)\\) = 1/2, since if you picked the right door, the host can open either of the remaining doors with equal probability.
+- \\(P(E\mid H)\\) = 1/2, since if you picked the right door, the host can open either of the remaining doors with equal probability.
 - \\(P(E)\\) = 1/2, since regardless of your initial choice, there are two doors with goats and one with a car, and the host will always open one with a goat.
-- \\(P(H\midE)\\) = (1/2)(1/3)/(1/2) = 1/3.
+- \\(P(H\mid E)\\) = (1/2)(1/3)/(1/2) = 1/3.
 
 Therefore, the posterior probability of your initial choice being correct is still 1/3, even after seeing the evidence. 
 This means that switching to the other remaining door will increase your probability of winning to 2/3, since there are only two possibilities left and one of them is wrong.
