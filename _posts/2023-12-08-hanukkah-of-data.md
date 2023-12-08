@@ -9,11 +9,13 @@ This is a collection of my solution with some explanations.
 
 ## Puzzle 1
 
+read in the data (available on the challenge website)
 ```R
 library(tidyverse)
 noahs_customers <- read_csv("../noahs-csv/5784/noahs-customers.csv")
 ```
 
+clean the data, especially the names, then split into first and last name
 ```R
 noahs_customers <- noahs_customers |>
   mutate(name = str_remove_all(name, " Jr.")) |>
@@ -24,6 +26,7 @@ noahs_customers <- noahs_customers |>
   extract(name, into = c('FirstName', 'LastName'), '(.*)\\s+([^ ]+)$')
 ```
 
+function to map letters to their phone buttons
 ```R
 replace_chars <- function(input_string) {
   mapping <- letters
@@ -36,11 +39,11 @@ replace_chars <- function(input_string) {
   return(input_string)
 }
 ```
-
+apply this function
 ```R
 noahs_customers$LastName_Number <- sapply(noahs_customers$LastName, replace_chars)
 ```
-
+find the name where phone number and last name matches
 ```R
 noahs_customers |> filter(LastName_Number == phone)
 ```
