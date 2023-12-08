@@ -4,7 +4,8 @@ title: Hanukkah of Data 2023
 categories: [r]
 ---
 
-Are you ready for a thrilling data adventure? [Noah’s Rug](https://hanukkah.bluebird.sh/5784/) is an awesome data game that challenges you to solve puzzles using a fictional dataset. Every day of Hanukkah, you can light up a candle and discover a piece of a mysterious tapestry. After the last day, you can test your skills in a speedrun mode. You can use any tools you want to explore the data and find the answers. 
+Are you ready for a thrilling data adventure? [Noah’s Rug](https://hanukkah.bluebird.sh/5784/) is an awesome data game that challenges you to solve puzzles using a fictional dataset. Every day of Hanukkah, you can light up a candle and discover a piece of a mysterious tapestry. After the last day, you can test your skills in a speedrun mode. You can use any tools you want to explore the data and find the answers.
+This is a collection of my solution with some explanations.
 
 ## Puzzle 1
 
