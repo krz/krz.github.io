@@ -48,3 +48,29 @@ find the name where phone number and last name matches
 noahs_customers |> filter(LastName_Number == phone)
 ```
 
+here's another solution in `Julia`
+
+```Julia
+using CSV, DataFrames
+
+noahs_customer = CSV.File("/Users/ubu/Downloads/5784/noahs-customers.csv") |> DataFrame
+transform!(noahs_customer, :name => ByRow(x -> join(split(x, " ")[2:end], " ")) => :last_name)
+
+transform!(noahs_customer, :last_name => ByRow(x -> replace(x, " III" => "", " IV" => "", " Jr." => "")) => :last_name)
+
+function replace_chars(input_string)
+    letters = join(Char.(97:122))
+    mapping = Dict(zip(letters, ["2", "2", "2", "3", "3", "3", "4", "4", "4", "5", "5", "5", "6", "6", "6", "7", "7", "7", "7", "8", "8", "8", "9", "9", "9", "9"]))
+    for (k, v) in mapping
+        input_string = replace(lowercase(input_string), k => v)
+    end
+    return input_string
+end
+
+transform!(noahs_customer, :last_name => ByRow(x -> replace_chars(x)) => :last_name_transformed)
+
+transform!(noahs_customer, :phone => ByRow(x -> replace(x, "-" => "")) => :phone)
+
+filter(row -> row.phone == row.last_name_transformed, noahs_customer)
+```
+
