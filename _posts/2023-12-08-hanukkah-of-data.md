@@ -96,3 +96,18 @@ noahs_customers |>
   filter(initials == "JP" & order_year == 2017 & str_detect(desc, "Bagel")) |>
   select(phone)
 ```
+
+# Puzzle 3
+
+```R
+noahs_customers <- read.csv("../5784/noahs-customers.csv")
+
+noahs_customers |>
+  # year of rabbit
+  filter(year(birthdate) %in% c(1927, 1939, 1951, 1963, 1975, 1987, 1999, 2011, 2023)) |>
+  # cancer
+  filter(month(birthdate) %in% c(6,7)) |>
+  # address of person from puzzle 2
+  filter(str_detect(citystatezip, "Jamaica, NY 11435"))
+# select first one because male
+```
