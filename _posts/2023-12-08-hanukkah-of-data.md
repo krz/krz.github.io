@@ -50,7 +50,7 @@ noahs_customers |> filter(LastName_Number == phone)
 
 here's another solution in `Julia`
 
-```Julia
+```R
 using CSV, DataFrames
 
 noahs_customer = CSV.File("/Users/ubu/Downloads/5784/noahs-customers.csv") |> DataFrame
@@ -74,3 +74,25 @@ transform!(noahs_customer, :phone => ByRow(x -> replace(x, "-" => "")) => :phone
 filter(row -> row.phone == row.last_name_transformed, noahs_customer)
 ```
 
+## Puzzle 2
+
+```R
+noahs_customers <- read.csv("../5784/noahs-customers.csv")
+noahs_orders <- read.csv("../5784/noahs-orders.csv")
+noahs_orders_items <- read_csv("../5784/noahs-orders_items.csv")
+noahs_products <- read_csv("../5784/noahs-products.csv")
+
+noahs_customers |>
+  mutate(name = str_remove_all(name, " Jr.")) |>
+  mutate(name = str_remove_all(name, " III")) |>
+  mutate(name = str_remove_all(name, " II")) |>
+  mutate(name = str_remove_all(name, " IV")) |>
+  extract(name, into = c('FirstName', 'LastName'), '(.*)\\s+([^ ]+)$') |>
+  mutate(initials = str_c(str_sub(FirstName, 1, 1), str_sub(LastName, 1, 1))) |>
+  left_join(noahs_orders, by="customerid") |>
+  left_join(noahs_orders_items, by="orderid") |>
+  left_join(noahs_products, by="sku") |>
+  mutate(order_year = year(shipped)) |>
+  filter(initials == "JP" & order_year == 2017 & str_detect(desc, "Bagel")) |>
+  select(phone)
+```
