@@ -75,7 +75,7 @@ filter(row -> row.phone == row.last_name_transformed, noahs_customer)
 ```
 
 ## Puzzle 2
-
+`R` solution:
 ```R
 noahs_customers <- read.csv("../5784/noahs-customers.csv")
 noahs_orders <- read.csv("../5784/noahs-orders.csv")
@@ -99,6 +99,7 @@ noahs_customers |>
 
 # Puzzle 3
 
+`R` solution:
 ```R
 noahs_customers <- read.csv("../5784/noahs-customers.csv")
 
@@ -111,3 +112,17 @@ noahs_customers |>
   filter(str_detect(citystatezip, "Jamaica, NY 11435"))
 # select first one because male
 ```
+
+`Julia` solution:
+```R
+using CSV, DataFrames, DataFramesMeta, Dates
+
+noahs_customers = CSV.File(".../5784/noahs-customers.csv") |> DataFrame
+
+@chain noahs_customers begin
+    @rsubset(year(:birthdate) in [1927, 1939, 1951, 1963, 1975, 1987, 1999, 2011, 2023])
+    @rsubset(month(:birthdate) in [6, 7])
+    @rsubset occursin.("Jamaica, NY 11435", :citystatezip)
+ end
+```
+
