@@ -150,3 +150,25 @@ noahs_customers |>
 # I assumed the person lives in a neighbouring are of Jamaica, NY, because she biked there
   filter(str_detect(citystatezip, "Brooklyn") | str_detect(citystatezip, "Queens"))
 ```
+
+`Julia`solution:
+```R
+using CSV, DataFrames, DataFramesMeta, Dates
+
+noahs_customers = CSV.File("../5784/noahs-customers.csv") |> DataFrame
+noahs_orders = CSV.File("../5784/noahs-orders.csv") |> DataFrame
+noahs_orders_items = CSV.File("../5784/noahs-orders_items.csv") |> DataFrame
+noahs_products = CSV.File("../5784/noahs-products.csv") |> DataFrame
+
+
+@chain noahs_customers begin
+    leftjoin(noahs_orders, on=:customerid, matchmissing=:equal)
+    leftjoin(noahs_orders_items, on=:orderid, matchmissing=:equal)
+    leftjoin(noahs_products, on=:sku, matchmissing=:equal)
+    @rsubset occursin.("BKY", coalesce.(:sku, ""))
+    @rsubset(hour(DateTime(:ordered, "yyyy-mm-dd HH:MM:SS")) < 5)
+    @rsubset(hour(DateTime(:shipped, "yyyy-mm-dd HH:MM:SS")) < 5)
+    @rsubset(year(:birthdate) > 1970)
+    @rsubset occursin.("Brooklyn", coalesce.(:citystatezip, "")) || occursin.("Manhattan", coalesce.(:citystatezip, ""))
+end
+```
