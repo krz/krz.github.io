@@ -151,7 +151,7 @@ noahs_customers |>
   filter(str_detect(citystatezip, "Brooklyn") | str_detect(citystatezip, "Queens"))
 ```
 
-`Julia`solution:
+`Julia` solution:
 ```R
 using CSV, DataFrames, DataFramesMeta, Dates
 
