@@ -126,3 +126,27 @@ noahs_customers = CSV.File(".../5784/noahs-customers.csv") |> DataFrame
  end
 ```
 
+# Puzzle 4
+
+This one was a bit tricky, the result still contains a list of potential candidates that I tried out manually.
+
+`R` solution:
+```R
+noahs_customers <- read_csv("../5784/noahs-customers.csv") 
+noahs_orders <- read_csv("../5784/noahs-orders.csv") 
+noahs_orders_items <- read_csv("../5784/noahs-orders_items.csv") 
+noahs_products <- read_csv("../5784/noahs-products.csv") 
+
+noahs_customers |>
+  left_join(noahs_orders, by="customerid") |>
+  left_join(noahs_orders_items, by="orderid") |>
+  left_join(noahs_products, by="sku") |>
+# filter bakery items by SKU number
+  filter(str_detect(sku, "BKY")) |>
+# the person likes to shop early
+  filter(hour(ordered) < 5 & hour(shipped) < 5) |>
+# I assumed that the person is not too old because she likes to bike a lot
+  filter(year(birthdate) > 1970) |>
+# I assumed the person lives in a neighbouring are of Jamaica, NY, because she biked there
+  filter(str_detect(citystatezip, "Brooklyn") | str_detect(citystatezip, "Queens"))
+```
