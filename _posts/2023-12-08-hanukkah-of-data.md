@@ -172,3 +172,16 @@ noahs_products = CSV.File("../5784/noahs-products.csv") |> DataFrame
     @rsubset occursin.("Brooklyn", coalesce.(:citystatezip, "")) || occursin.("Manhattan", coalesce.(:citystatezip, ""))
 end
 ```
+
+# Puzzle 5
+`Julia` solution
+```R
+result = @chain noahs_customers begin
+    leftjoin(noahs_orders, on=:customerid, matchmissing=:equal)
+    leftjoin(noahs_orders_items, on=:orderid, matchmissing=:equal)
+    leftjoin(noahs_products, on=:sku, matchmissing=:equal)
+    @rsubset occursin.("Cat", coalesce.(:desc, ""))
+    @rsubset occursin.("Staten Island", coalesce.(:citystatezip, ""))
+    @rsubset :qty >= 10
+end
+```
