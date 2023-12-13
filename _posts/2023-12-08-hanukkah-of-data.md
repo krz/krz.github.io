@@ -185,3 +185,17 @@ result = @chain noahs_customers begin
     @rsubset :qty >= 10
 end
 ```
+
+# Puzzle 6
+`R` solution
+```R
+noahs_customers |>
+  left_join(noahs_orders, by="customerid") |>
+  left_join(noahs_orders_items, by="orderid") |>
+  left_join(noahs_products, by="sku") |>
+  group_by(orderid) |>
+  mutate(total_cost = sum(wholesale_cost),
+         profit = total - total_cost,
+         negative_profit_count = sum(profit < 0)) |>
+  first()
+```
