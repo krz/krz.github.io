@@ -233,3 +233,19 @@ end
 end
 # Carlos Myers 838-335-7157
 ```
+
+# Puzzle 8
+`Julia` solution
+```R
+@chain noahs_customers begin
+    leftjoin(noahs_orders, on=:customerid, matchmissing=:equal)
+    leftjoin(noahs_orders_items, on=:orderid, matchmissing=:equal)
+    leftjoin(noahs_products, on=:sku, matchmissing=:equal)
+    @rsubset occursin.("COL", coalesce.(:sku, ""))
+    groupby(:name)
+    transform(:name => length)
+    @orderby -:name_length
+    first()
+end
+# James Smith 212-547-3518
+```
