@@ -200,4 +200,5 @@ noahs_customers |>
          profit = total - total_cost,
          negative_profit_count = sum(profit < 0)) |>
   first()
+# Jacqueline Alvarez 315-377-5031
 ```
