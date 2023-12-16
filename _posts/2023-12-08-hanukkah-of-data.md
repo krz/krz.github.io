@@ -199,6 +199,7 @@ noahs_customers |>
   mutate(total_cost = sum(wholesale_cost),
          profit = total - total_cost,
          negative_profit_count = sum(profit < 0)) |>
-  first()
-# Jacqueline Alvarez 315-377-5031
+  arrange(desc(negative_profit_count)) |>
+first()
+# Sherri Long 585-838-9161
 ```
