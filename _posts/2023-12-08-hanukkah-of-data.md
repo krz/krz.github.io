@@ -203,3 +203,33 @@ noahs_customers |>
 first()
 # Sherri Long 585-838-9161
 ```
+
+# Puzzle 7
+`Julia` solution
+```R
+df = @chain noahs_customers begin
+    leftjoin(noahs_orders, on=:customerid, matchmissing=:equal)
+    leftjoin(noahs_orders_items, on=:orderid, matchmissing=:equal)
+    leftjoin(noahs_products, on=:sku, matchmissing=:equal)
+    @rsubset occursin.("COL", coalesce.(:sku, ""))
+    transform(:ordered => ByRow(x -> DateTime(x, dateformat"yyyy-mm-dd HH:MM:SS")) => :ordered)
+    # remove colors in parenthesis
+    transform(:desc => ByRow(x -> replace(x, r"\(\w+\)" => "")) => :desc_clean)
+end
+
+sherri_items = @chain df begin
+    subset(:name => ByRow(x -> x == "Sherri Long"))
+    _.desc_clean
+end
+
+sherri_dates = @chain df begin
+    subset(:name => ByRow(x -> x == "Sherri Long"))
+    _.ordered
+end
+
+@chain df begin
+    @rsubset(Date(:ordered) in Date.(sherri_dates))
+    @rsubset(:desc_clean in sherri_items)
+end
+# Carlos Myers 838-335-7157
+```
