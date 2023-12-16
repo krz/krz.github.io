@@ -171,12 +171,13 @@ noahs_products = CSV.File("../5784/noahs-products.csv") |> DataFrame
     @rsubset(year(:birthdate) > 1970)
     @rsubset occursin.("Brooklyn", coalesce.(:citystatezip, "")) || occursin.("Manhattan", coalesce.(:citystatezip, ""))
 end
+# Renee Harmon 607-231-3605
 ```
 
 # Puzzle 5
 `Julia` solution
 ```R
-result = @chain noahs_customers begin
+@chain noahs_customers begin
     leftjoin(noahs_orders, on=:customerid, matchmissing=:equal)
     leftjoin(noahs_orders_items, on=:orderid, matchmissing=:equal)
     leftjoin(noahs_products, on=:sku, matchmissing=:equal)
@@ -184,6 +185,7 @@ result = @chain noahs_customers begin
     @rsubset occursin.("Staten Island", coalesce.(:citystatezip, ""))
     @rsubset :qty >= 10
 end
+# Nicole Wilson 631-507-6048
 ```
 
 # Puzzle 6
