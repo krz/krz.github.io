@@ -75,6 +75,7 @@ filter(row -> row.phone == row.last_name_transformed, noahs_customer)
 ```
 
 ## Puzzle 2
+
 `R` solution:
 ```R
 noahs_customers <- read.csv("../5784/noahs-customers.csv")
@@ -175,6 +176,7 @@ end
 ```
 
 ## Puzzle 5
+
 `Julia` solution
 ```R
 @chain noahs_customers begin
@@ -189,6 +191,7 @@ end
 ```
 
 ## Puzzle 6
+
 `R` solution
 ```R
 noahs_customers |>
@@ -205,6 +208,7 @@ first()
 ```
 
 ## Puzzle 7
+
 `Julia` solution
 ```R
 df = @chain noahs_customers begin
@@ -234,7 +238,8 @@ end
 # Carlos Myers 838-335-7157
 ```
 
-# Puzzle 8
+## Puzzle 8
+
 `Julia` solution
 ```R
 @chain noahs_customers begin
