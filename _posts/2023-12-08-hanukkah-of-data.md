@@ -97,7 +97,7 @@ noahs_customers |>
   select(phone)
 ```
 
-# Puzzle 3
+## Puzzle 3
 
 `R` solution:
 ```R
@@ -126,7 +126,7 @@ noahs_customers = CSV.File(".../5784/noahs-customers.csv") |> DataFrame
  end
 ```
 
-# Puzzle 4
+## Puzzle 4
 
 This one was a bit tricky, the result still contains a list of potential candidates that I tried out manually.
 
@@ -174,7 +174,7 @@ end
 # Renee Harmon 607-231-3605
 ```
 
-# Puzzle 5
+## Puzzle 5
 `Julia` solution
 ```R
 @chain noahs_customers begin
@@ -188,7 +188,7 @@ end
 # Nicole Wilson 631-507-6048
 ```
 
-# Puzzle 6
+## Puzzle 6
 `R` solution
 ```R
 noahs_customers |>
@@ -204,7 +204,7 @@ first()
 # Sherri Long 585-838-9161
 ```
 
-# Puzzle 7
+## Puzzle 7
 `Julia` solution
 ```R
 df = @chain noahs_customers begin
