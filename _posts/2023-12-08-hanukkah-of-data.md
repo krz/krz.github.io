@@ -53,7 +53,7 @@ here's another solution in `Julia`
 ```R
 using CSV, DataFrames
 
-noahs_customer = CSV.File("/Users/ubu/Downloads/5784/noahs-customers.csv") |> DataFrame
+noahs_customer = CSV.File("../5784/noahs-customers.csv") |> DataFrame
 transform!(noahs_customer, :name => ByRow(x -> join(split(x, " ")[2:end], " ")) => :last_name)
 
 transform!(noahs_customer, :last_name => ByRow(x -> replace(x, " III" => "", " IV" => "", " Jr." => "")) => :last_name)
