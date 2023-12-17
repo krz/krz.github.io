@@ -98,6 +98,22 @@ noahs_customers |>
   select(phone)
 ```
 
+`Julia` solution:
+```R
+@chain noahs_customers begin
+    leftjoin(noahs_orders, on=:customerid, matchmissing=:equal)
+    leftjoin(noahs_orders_items, on=:orderid, matchmissing=:equal)
+    leftjoin(noahs_products, on=:sku, matchmissing=:equal)
+    transform(:name => ByRow(x -> join(split(x, " ")[2:end], " ")) => :last_name)
+    transform(:name => ByRow(x -> join(split(x, " ")[1], " ")) => :first_name)
+    transform(:last_name => ByRow(x -> replace(x, " III" => "", " IV" => "", " Jr." => "")) => :last_name)
+    @rsubset occursin.("Bagel", coalesce.(:desc, ""))
+    transform(:ordered => ByRow(x -> DateTime(x, dateformat"yyyy-mm-dd HH:MM:SS")) => :ordered)
+    filter(row -> startswith(row.first_name, "J") && startswith(row.last_name, "P") && year(row.ordered) == 2017, _)
+end
+# Joshua Peterson 332-274-4185
+```
+
 ## Puzzle 3
 
 `R` solution:
