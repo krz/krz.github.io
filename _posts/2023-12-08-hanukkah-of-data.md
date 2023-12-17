@@ -223,6 +223,21 @@ first()
 # Sherri Long 585-838-9161
 ```
 
+`Julia` solution
+```R
+@chain noahs_customers begin
+    leftjoin(noahs_orders, on=:customerid, matchmissing=:equal)
+    leftjoin(noahs_orders_items, on=:orderid, matchmissing=:equal)
+    leftjoin(noahs_products, on=:sku, matchmissing=:equal)
+    groupby(:orderid)
+    @transform(:total_cost = sum(:wholesale_cost); ungroup=false)
+    @transform(:profit = :total .- :total_cost; ungroup=false)
+    @transform(:negative_profit_count = sum(:profit .< 0))
+    @orderby -:negative_profit_count
+end
+# Sherri Long 585-838-9161
+```
+
 ## Puzzle 7
 
 `Julia` solution
