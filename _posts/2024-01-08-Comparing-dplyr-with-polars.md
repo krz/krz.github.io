@@ -10,7 +10,7 @@ In the R world, the **dplyr** package is one of the most popular and powerful to
 It provides a consistent and expressive syntax based on the **tidyverse** principles, which make it easy to write readable and maintainable code. 
 Many other packages extend its functionality, allowing you to work with large and diverse data sources.
 
-However, if you are a Python user, you may not have a clear and easy choice for data manipulation. The (by far) most popular package is **pandas** but I always found it's syntax confusing, especially if you have strong dplyr background. 
+However, if you are a Python user, you may not have a clear and easy choice for data manipulation. The (by far) most popular package is **pandas** but I always found it's syntax confusing, especially if you have a strong dplyr background. 
 
 That is, until now. After reading [Emily Riederer's excellent blog](https://www.emilyriederer.com/post/py-rgo/) I discovered **polars**, a new Python library for data manipulation that aims to fill the gap between dplyr and pandas. 
 Polars is a fast and expressive library that offers a syntax similar to the tidyverse, while being extremely fast and scalable. 
@@ -19,7 +19,7 @@ It also supports lazy evaluation, parallel processing, and query optimization, w
 [According to some benchmarks](https://duckdblabs.github.io/db-benchmark/), polars is one of the fastest tools for handling and manipulating data.
 
 In this blog post, we will compare the dplyr and polars libraries and see how they can help us perform common data manipulation tasks. 
-We will use a simple data set of the **palmerpenguins** package, the [new Iris data set](https://allisonhorst.github.io/palmerpenguins/articles/intro.html). We will see how to load, filter, group, join, and reshape the data using both libraries, and compare their syntax, performance, and output. 
+We will use a simple data set of the **palmerpenguins** package, the ["new Iris data set"](https://allisonhorst.github.io/palmerpenguins/articles/intro.html). We will see how to load, filter, group, join, and reshape the data using both libraries, and compare their syntax and output. 
 We will also discuss some of the advantages and disadvantages of each library, and provide some tips and resources for further learning.
 
 # Reading data
@@ -234,12 +234,12 @@ The dplyr equivalent would be something like this:
 3 Gentoo           3950
 ```
 
+# Joining dataframes
+polars has the same `left_join`, `right_join` and `inner_join` functionality as dplyr, for examples please refer to the [docs](https://docs.pola.rs/py-polars/html/reference/dataframe/api/polars.DataFrame.join.html#polars.DataFrame.join)
 
+# Conclusion
 
-
-
-
-
+In conclusion, **polars** is a fast and expressive DataFrame library for Python that can handle large-scale data analysis with ease and efficiency. It offers a familiar and intuitive interface, similar to R's dplyr. Whether you are a data scientist, a data analyst, or a data enthusiast, polars can help you unleash the power of your data.
 
 
 
