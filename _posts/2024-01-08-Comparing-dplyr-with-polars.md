@@ -12,7 +12,7 @@ Many other packages extend its functionality, allowing you to work with large an
 
 However, if you are a Python user, you may not have a clear and easy choice for data manipulation. The (by far) most popular package is **pandas** but I always found it's syntax confusing, especially if you have a strong dplyr background. 
 
-That is, until now. After reading [Emily Riederer's excellent blog](https://www.emilyriederer.com/post/py-rgo/) I discovered **polars**, a new Python library for data manipulation that aims to fill the gap between dplyr and pandas. 
+That is, until now. After reading [Emily Riederer's excellent blog](https://www.emilyriederer.com/post/py-rgo/) I discovered [**polars**](https://pola.rs/), a new Python library for data manipulation that aims to fill the gap between dplyr and pandas. 
 Polars is a fast and expressive library that offers a syntax similar to the tidyverse, while being extremely fast and scalable. 
 It leverages Apache Arrow as its underlying data structure and is written in Rust, which enables efficient memory management and interoperability with other tools. 
 It also supports lazy evaluation, parallel processing, and query optimization, which make it suitable for working with large and complex data sets.
@@ -235,7 +235,12 @@ The dplyr equivalent would be something like this:
 ```
 
 # Joining dataframes
-polars has the same `left_join`, `right_join` and `inner_join` functionality as dplyr, for examples please refer to the [docs](https://docs.pola.rs/py-polars/html/reference/dataframe/api/polars.DataFrame.join.html#polars.DataFrame.join)
+polars has the same `left_join`, `right_join` and `inner_join` functionality as dplyr, for examples please refer to the [docs](https://docs.pola.rs/py-polars/html/reference/dataframe/api/polars.DataFrame.join.html#polars.DataFrame.join).
+
+|  | dplyr | polars |
+| :---         |     :---      |          :--- |
+| join dataframes|  `left_join(df1, df2, by=x)`  | `df1.join(df2, on="x", how="left")`  |
+
 
 # Conclusion
 
