@@ -64,10 +64,38 @@ shape: (344, 9)
 │ 344   ┆ Chinstrap ┆ Dream     ┆ 50.2           ┆ … ┆ 198               ┆ 3775        ┆ female ┆ 2009 │
 └───────┴───────────┴───────────┴────────────────┴───┴───────────────────┴─────────────┴────────┴──────┘
 ```
+The following table compares the main functions of polars with the R package dplyr:
+ 
+|  | dplyr | polars |
+| :---         |     :---:      |          ---: |
+| first `n` rows   |  head(df, n)     | df.head(n)    |
+| pick column   | select(df, x) | df.select(pl.col(x))   |
+| pick multiple columns | select(df, x, y) | df.select(pl.col(x), pl.col(y)) |
+| pick rows | filter(df, x > 4) | df.filter(pl.col(x) > 4 )
 
+You see, these commands are basically the same between dplyr and polars.
 
+For example, we want to get the `bill_length_mm` of all penguins with `body_mass_g` below 3800:
 
-
+```
+> df.filter(pl.col("body_mass_g") < 3800).select(pl.col("bill_length_mm"))
+shape: (129, 1)
+┌────────────────┐
+│ bill_length_mm │
+│ ---            │
+│ f64            │
+╞════════════════╡
+│ 39.1           │
+│ 40.3           │
+│ 36.7           │
+│ 39.3           │
+│ …              │
+│ 45.7           │
+│ 43.5           │
+│ 49.6           │
+│ 50.2           │
+└────────────────┘
+```
 
 
 
