@@ -72,6 +72,7 @@ The following table compares the main functions of polars with the R package dpl
 | pick column   | `select(df, x)` | `df.select(pl.col("x"))`   |
 | pick multiple columns | `select(df, x, y)` | `df.select(pl.col("x", "y"))` |
 | pick rows | `filter(df, x > 4)` | `df.filter(pl.col("x") > 4 )` |
+| sort column | `arrange(df, x)` | `df.sort("x")` |
 
 You see, these commands are basically the same between dplyr and polars.
 
@@ -109,6 +110,7 @@ Like in dplyr, polars filter and select have many more capabilities:
 | filter range of values | `filter(df, between(x, lo, hi))` | `df.filter(pl.col("x").is_between(lo, hi))` |
 
 [1] requires `import polars.selectors as cs`
+Please note that you can also [cast()](https://docs.pola.rs/user-guide/expressions/casting/#numerics) columns from one type to another (e.g. Float to Int).
 
 **For example**, return all columns starting with "bill" for the penguin species "Gentoo":
 
@@ -163,6 +165,12 @@ shape: (344, 10)
 │ 344   ┆ Chinstrap ┆ Dream     ┆ 50.2           ┆ … ┆ 3775        ┆ female ┆ 2009 ┆ 0.253535           │
 └───────┴───────────┴───────────┴────────────────┴───┴─────────────┴────────┴──────┴────────────────────┘
 ```
+
+# Grouping an aggregating
+
+Aggregating and grouping data are essential skills for data analysis, as they allow you to summarize, transform, and manipulate data in meaningful ways.
+
+
 
 
 
