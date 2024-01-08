@@ -34,7 +34,7 @@ df = pl.read_csv("https://gist.githubusercontent.com/slopp/ce3b90b9168f2f921784d
 
 polars also supports a [scan_csv](https://docs.pola.rs/py-polars/html/reference/api/polars.scan_csv.html) method for lazy loading, this is extremely useful for large datasets.
 
-In **R**, for convenience, we use the **palmerpenguins** package that already contains the penguis data set
+In **R**, for convenience, we use the **palmerpenguins** package that already contains the penguins data set
 ```R
 library(tidyverse)
 library(palmerpenguins)
