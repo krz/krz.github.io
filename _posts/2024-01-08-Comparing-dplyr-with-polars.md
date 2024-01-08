@@ -67,17 +67,17 @@ shape: (344, 9)
 The following table compares the main functions of polars with the R package dplyr:
  
 |  | dplyr | polars |
-| :---         |     :---:      |          ---: |
-| first `n` rows   |  head(df, n)     | df.head(n)    |
-| pick column   | select(df, x) | df.select(pl.col(x))   |
-| pick multiple columns | select(df, x, y) | df.select(pl.col(x), pl.col(y)) |
-| pick rows | filter(df, x > 4) | df.filter(pl.col(x) > 4 )
+| :---         |     :---:      |          :---: |
+| first `n` rows   |  `head(df, n)`     | `df.head(n)`    |
+| pick column   | `select(df, x)` | `df.select(pl.col("x"))`   |
+| pick multiple columns | `select(df, x, y)` | `df.select(pl.col("x", "y"))` |
+| pick rows | `filter(df, x > 4)` | `df.filter(pl.col("x") > 4 )`
 
 You see, these commands are basically the same between dplyr and polars.
 
 For example, we want to get the `bill_length_mm` of all penguins with `body_mass_g` below 3800:
 
-```
+```python
 > df.filter(pl.col("body_mass_g") < 3800).select(pl.col("bill_length_mm"))
 shape: (129, 1)
 ┌────────────────┐
@@ -96,6 +96,15 @@ shape: (129, 1)
 │ 50.2           │
 └────────────────┘
 ```
+
+# Advanced `filter` and `select`
+
+|  | dplyr | polars |
+| :---         |     :---:      |          :---: |
+| select all columns except x   |  `select(df, -x)`  | `df.select(pl.exclude("x"))`  |
+| filter range of values | `filter(df, between(x, lo, hi))` | `df.filter(pl.col("x").is_between(lo, hi))` |
+
+
 
 
 
