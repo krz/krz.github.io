@@ -33,4 +33,19 @@ import polars as pl
 df = pl.read_csv("https://gist.githubusercontent.com/slopp/ce3b90b9168f2f921784de84fa445651/raw/4ecf3041f0ed4913e7c230758733948bc561f434/penguins.csv", null_values="NA")
 ```
 
+polars also supports a [scan_csv](https://docs.pola.rs/py-polars/html/reference/api/polars.scan_csv.html) method for lazy loading, this is extremely useful for large datasets.
+
+In **R**, for convenience, we use the **palmerpenguis** package that already contains the penguis data set
+```R
+library(tidyverse)
+library(palmerpenguins)
+attach(penguins)
+```
+
+
+
+
+
+
+
 
