@@ -71,7 +71,7 @@ The following table compares the main functions of polars with the R package dpl
 | first `n` rows   |  `head(df, n)`     | `df.head(n)`    |
 | pick column   | `select(df, x)` | `df.select(pl.col("x"))`   |
 | pick multiple columns | `select(df, x, y)` | `df.select(pl.col("x", "y"))` |
-| pick rows | `filter(df, x > 4)` | `df.filter(pl.col("x") > 4 )`
+| pick rows | `filter(df, x > 4)` | `df.filter(pl.col("x") > 4 )` |
 
 You see, these commands are basically the same between dplyr and polars.
 
@@ -104,13 +104,13 @@ Like in dplyr, polars filter and select have many more capabilities:
 |  | dplyr | polars |
 | :---         |     :---      |          :--- |
 | select all columns except x   |  `select(df, -x)`  | `df.select(pl.exclude("x"))`  |
-| select all columns that start with "str" | `select(df, starts_with("str"))` | `df.select(pl.col("^bill.*$"))` or `df.select(cs.starts_with("str"))`[1]
-| select numeric columns | `select(df, where(is.numeric))` | `df.select(cs.float(), cs.integer())`[1]
+| select all columns that start with "str" | `select(df, starts_with("str"))` | `df.select(pl.col("^bill.*$"))` or `df.select(cs.starts_with("str"))`[1] |
+| select numeric columns | `select(df, where(is.numeric))` | `df.select(cs.float(), cs.integer())`[1] |
 | filter range of values | `filter(df, between(x, lo, hi))` | `df.filter(pl.col("x").is_between(lo, hi))` |
 
 [1] requires `import polars.selectors as cs`
 
-For example, return all columns starting with "bill" for the penguin species "Gentoo":
+**For example**, return all columns starting with "bill" for the penguin species "Gentoo":
 
 ```python
 > df.filter(pl.col("species") == "Gentoo").select(pl.col("^bill.*$"))
@@ -131,6 +131,39 @@ shape: (124, 2)
 │ 49.9           ┆ 16.1          │
 └────────────────┴───────────────┘
 ```
+
+# Creating and renaming new columns
+
+One of the most used commands in my dplyr workflow is the `mutate` function for creating columns.
+The polars equivalent is called `with_column` and works similarly
+
+|  | dplyr | polars |
+| :---         |     :---      |          :--- |
+| create new column |  `mutate(df, x_mean = mean(x)`  | `df.with_columns(pl.col("x").mean().alias("x_mean"))`  |
+| rename column | `rename(df, new_x = x)` | `df.rename({"x": "new_x"})` |
+
+**For example**, let's create a new variable with the bill/flipper ratio called `bill_flipper_ratio`:
+
+```python
+> df.with_columns((pl.col("bill_length_mm") / pl.col("flipper_length_mm")).alias("bill_flipper_ratio"))
+shape: (344, 10)
+┌───────┬───────────┬───────────┬────────────────┬───┬─────────────┬────────┬──────┬────────────────────┐
+│ rowid ┆ species   ┆ island    ┆ bill_length_mm ┆ … ┆ body_mass_g ┆ sex    ┆ year ┆ bill_flipper_ratio │
+│ ---   ┆ ---       ┆ ---       ┆ ---            ┆   ┆ ---         ┆ ---    ┆ ---  ┆ ---                │
+│ i64   ┆ str       ┆ str       ┆ f64            ┆   ┆ i64         ┆ str    ┆ i64  ┆ f64                │
+╞═══════╪═══════════╪═══════════╪════════════════╪═══╪═════════════╪════════╪══════╪════════════════════╡
+│ 1     ┆ Adelie    ┆ Torgersen ┆ 39.1           ┆ … ┆ 3750        ┆ male   ┆ 2007 ┆ 0.216022           │
+│ 2     ┆ Adelie    ┆ Torgersen ┆ 39.5           ┆ … ┆ 3800        ┆ female ┆ 2007 ┆ 0.212366           │
+│ 3     ┆ Adelie    ┆ Torgersen ┆ 40.3           ┆ … ┆ 3250        ┆ female ┆ 2007 ┆ 0.206667           │
+│ 4     ┆ Adelie    ┆ Torgersen ┆ null           ┆ … ┆ null        ┆ null   ┆ 2007 ┆ null               │
+│ …     ┆ …         ┆ …         ┆ …              ┆ … ┆ …           ┆ …      ┆ …    ┆ …                  │
+│ 341   ┆ Chinstrap ┆ Dream     ┆ 43.5           ┆ … ┆ 3400        ┆ female ┆ 2009 ┆ 0.215347           │
+│ 342   ┆ Chinstrap ┆ Dream     ┆ 49.6           ┆ … ┆ 3775        ┆ male   ┆ 2009 ┆ 0.256995           │
+│ 343   ┆ Chinstrap ┆ Dream     ┆ 50.8           ┆ … ┆ 4100        ┆ male   ┆ 2009 ┆ 0.241905           │
+│ 344   ┆ Chinstrap ┆ Dream     ┆ 50.2           ┆ … ┆ 3775        ┆ female ┆ 2009 ┆ 0.253535           │
+└───────┴───────────┴───────────┴────────────────┴───┴─────────────┴────────┴──────┴────────────────────┘
+```
+
 
 
 
