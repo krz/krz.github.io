@@ -21,3 +21,16 @@ It also supports lazy evaluation, parallel processing, and query optimization, w
 In this blog post, we will compare the dplyr and polars libraries and see how they can help us perform common data manipulation tasks. 
 We will use a simple data set of the **palmerpenguins** package, the [new Iris data set](https://allisonhorst.github.io/palmerpenguins/articles/intro.html). We will see how to load, filter, group, join, and reshape the data using both libraries, and compare their syntax, performance, and output. 
 We will also discuss some of the advantages and disadvantages of each library, and provide some tips and resources for further learning.
+
+## Reading data
+Reading a csv file in **polars** is extremely easy (and similar to pandas).
+The following code reads in the *palmerpenguins* data set (from a github page).
+In polars, **NA** values are **null** so it's important to specify this using the **null_values** parameter.
+
+```python
+import polars as pl
+
+df = pl.read_csv("https://gist.githubusercontent.com/slopp/ce3b90b9168f2f921784de84fa445651/raw/4ecf3041f0ed4913e7c230758733948bc561f434/penguins.csv", null_values="NA")
+```
+
+
