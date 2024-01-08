@@ -67,7 +67,7 @@ shape: (344, 9)
 The following table compares the main functions of polars with the R package dplyr:
  
 |  | dplyr | polars |
-| :---         |     :---:      |          :---: |
+| :---         |     :---      |          :--- |
 | first `n` rows   |  `head(df, n)`     | `df.head(n)`    |
 | pick column   | `select(df, x)` | `df.select(pl.col("x"))`   |
 | pick multiple columns | `select(df, x, y)` | `df.select(pl.col("x", "y"))` |
@@ -100,9 +100,14 @@ shape: (129, 1)
 # Advanced `filter` and `select`
 
 |  | dplyr | polars |
-| :---         |     :---:      |          :---: |
+| :---         |     :---      |          :--- |
 | select all columns except x   |  `select(df, -x)`  | `df.select(pl.exclude("x"))`  |
+| select all columns that start with "str" | `select(df, starts_with("str"))` | `df.select(pl.col("^bill.*$"))`
+| select numeric columns | `select(df, where(is.numeric))` | `df.select(cs.float(), cs.integer())` [^1]
 | filter range of values | `filter(df, between(x, lo, hi))` | `df.filter(pl.col("x").is_between(lo, hi))` |
+
+[^1] requires `import polars.selectors as cs`
+
 
 
 
