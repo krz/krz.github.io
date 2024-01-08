@@ -75,7 +75,7 @@ The following table compares the main functions of polars with the R package dpl
 
 You see, these commands are basically the same between dplyr and polars.
 
-For example, we want to get the `bill_length_mm` of all penguins with `body_mass_g` below 3800:
+**For example**, we want to get the `bill_length_mm` of all penguins with `body_mass_g` below 3800:
 
 ```python
 > df.filter(pl.col("body_mass_g") < 3800).select(pl.col("bill_length_mm"))
@@ -99,14 +99,43 @@ shape: (129, 1)
 
 # Advanced `filter` and `select`
 
+Like in dplyr, polars filter and select have many more capabilities:
+
 |  | dplyr | polars |
 | :---         |     :---      |          :--- |
 | select all columns except x   |  `select(df, -x)`  | `df.select(pl.exclude("x"))`  |
 | select all columns that start with "str" | `select(df, starts_with("str"))` | `df.select(pl.col("^bill.*$"))`
-| select numeric columns | `select(df, where(is.numeric))` | `df.select(cs.float(), cs.integer())` [^1]
+| select numeric columns | `select(df, where(is.numeric))` | `df.select(cs.float(), cs.integer())`[1]
 | filter range of values | `filter(df, between(x, lo, hi))` | `df.filter(pl.col("x").is_between(lo, hi))` |
 
-[^1] requires `import polars.selectors as cs`
+[1] requires `import polars.selectors as cs`
+
+For example, return all columns starting with "bill" for the penguin species "Gentoo"
+select all columns starting with "bill" and filter only rows with species "Gentoo":
+
+```python
+> df.filter(pl.col("species") == "Gentoo").select(pl.col("^bill.*$"))
+shape: (124, 2)
+┌────────────────┬───────────────┐
+│ bill_length_mm ┆ bill_depth_mm │
+│ ---            ┆ ---           │
+│ f64            ┆ f64           │
+╞════════════════╪═══════════════╡
+│ 46.1           ┆ 13.2          │
+│ 50.0           ┆ 16.3          │
+│ 48.7           ┆ 14.1          │
+│ 50.0           ┆ 15.2          │
+│ …              ┆ …             │
+│ 46.8           ┆ 14.3          │
+│ 50.4           ┆ 15.7          │
+│ 45.2           ┆ 14.8          │
+│ 49.9           ┆ 16.1          │
+└────────────────┴───────────────┘
+```
+
+
+
+
 
 
 
