@@ -141,7 +141,7 @@ The polars equivalent is called `with_column` and works similarly
 
 |  | dplyr | polars |
 | :---         |     :---      |          :--- |
-| create new column |  `mutate(df, x_mean = mean(x)`  | `df.with_columns(pl.col("x").mean().alias("x_mean"))`  |
+| create new column |  `mutate(df, x_mean = mean(x))`  | `df.with_columns(pl.col("x").mean().alias("x_mean"))`  |
 | rename column | `rename(df, new_x = x)` | `df.rename({"x": "new_x"})` |
 
 **For example**, let's create a new variable with the bill/flipper ratio called `bill_flipper_ratio`:
@@ -166,13 +166,73 @@ shape: (344, 10)
 └───────┴───────────┴───────────┴────────────────┴───┴─────────────┴────────┴──────┴────────────────────┘
 ```
 
-# Grouping an aggregating
+# Grouping and aggregating
 
 Aggregating and grouping data are essential skills for data analysis, as they allow you to summarize, transform, and manipulate data in meaningful ways.
+Again, these commands are very similar between dplyr and polars
 
+|  | dplyr | polars |
+| :---         |     :---      |          :--- |
+| group |  `group_by(df, x)`  | `df.group_by("x")`  |
+| summarize | `summarize(df, x_n = n())` | `df.agg(pl.count().alias("x_n"))` |
 
+For example, group the data by species and count the number of penguins of each species, then sort in descending order:
+```python
+> df.group_by("species").agg(pl.count().alias("counts")).sort("counts", descending=True)
+shape: (3, 2)
+┌───────────┬────────┐
+│ species   ┆ counts │
+│ ---       ┆ ---    │
+│ str       ┆ u32    │
+╞═══════════╪════════╡
+│ Adelie    ┆ 152    │
+│ Gentoo    ┆ 124    │
+│ Chinstrap ┆ 68     │
+└───────────┴────────┘
+```
 
+Another one, for each species, find the penguin with the lowest body mass:
+```python
+> df.group_by("species").agg(pl.all().sort_by("body_mass_g").first())
+shape: (3, 9)
+┌───────────┬───────┬───────────┬────────────────┬───┬───────────────────┬─────────────┬────────┬──────┐
+│ species   ┆ rowid ┆ island    ┆ bill_length_mm ┆ … ┆ flipper_length_mm ┆ body_mass_g ┆ sex    ┆ year │
+│ ---       ┆ ---   ┆ ---       ┆ ---            ┆   ┆ ---               ┆ ---         ┆ ---    ┆ ---  │
+│ str       ┆ i64   ┆ str       ┆ f64            ┆   ┆ i64               ┆ i64         ┆ str    ┆ i64  │
+╞═══════════╪═══════╪═══════════╪════════════════╪═══╪═══════════════════╪═════════════╪════════╪══════╡
+│ Adelie    ┆ 4     ┆ Torgersen ┆ null           ┆ … ┆ null              ┆ null        ┆ null   ┆ 2007 │
+│ Chinstrap ┆ 315   ┆ Dream     ┆ 46.9           ┆ … ┆ 192               ┆ 2700        ┆ female ┆ 2008 │
+│ Gentoo    ┆ 272   ┆ Biscoe    ┆ null           ┆ … ┆ null              ┆ null        ┆ null   ┆ 2009 │
+└───────────┴───────┴───────────┴────────────────┴───┴───────────────────┴─────────────┴────────┴──────┘
+```
+You can see that this result contains the null values, so let's remove them:
+```python
+> df.group_by("species").agg(pl.all().sort_by("body_mass_g").drop_nulls().first())
+shape: (3, 9)
+┌───────────┬───────┬───────────┬────────────────┬───┬───────────────────┬─────────────┬────────┬──────┐
+│ species   ┆ rowid ┆ island    ┆ bill_length_mm ┆ … ┆ flipper_length_mm ┆ body_mass_g ┆ sex    ┆ year │
+│ ---       ┆ ---   ┆ ---       ┆ ---            ┆   ┆ ---               ┆ ---         ┆ ---    ┆ ---  │
+│ str       ┆ i64   ┆ str       ┆ f64            ┆   ┆ i64               ┆ i64         ┆ str    ┆ i64  │
+╞═══════════╪═══════╪═══════════╪════════════════╪═══╪═══════════════════╪═════════════╪════════╪══════╡
+│ Adelie    ┆ 4     ┆ Torgersen ┆ 36.5           ┆ … ┆ 181               ┆ 2850        ┆ female ┆ 2007 │
+│ Chinstrap ┆ 315   ┆ Dream     ┆ 46.9           ┆ … ┆ 192               ┆ 2700        ┆ female ┆ 2008 │
+│ Gentoo    ┆ 272   ┆ Biscoe    ┆ 42.7           ┆ … ┆ 208               ┆ 3950        ┆ female ┆ 2009 │
+└───────────┴───────┴───────────┴────────────────┴───┴───────────────────┴─────────────┴────────┴──────┘
+```
 
+The dplyr equivalent would be something like this:
+```r
+> penguins |>
+   group_by(species) |>
+   arrange(body_mass_g) |>
+   summarize(body_mass_g = first(body_mass_g))
+# A tibble: 3 × 2
+  species   body_mass_g
+  <fct>           <int>
+1 Adelie           2850
+2 Chinstrap        2700
+3 Gentoo           3950
+```
 
 
 
