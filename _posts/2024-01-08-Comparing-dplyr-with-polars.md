@@ -137,7 +137,7 @@ shape: (124, 2)
 # Creating and renaming new columns
 
 One of the most used commands in my dplyr workflow is the `mutate` function for creating columns.
-The polars equivalent is called `with_column` and works similarly
+The polars equivalent is called `with_columns` and works similarly
 
 |  | dplyr | polars |
 | :---         |     :---      |          :--- |
