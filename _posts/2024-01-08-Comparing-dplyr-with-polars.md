@@ -106,11 +106,12 @@ Like in dplyr, polars filter and select have many more capabilities:
 | :---         |     :---      |          :--- |
 | select all columns except x   |  `select(df, -x)`  | `df.select(pl.exclude("x"))`  |
 | select all columns that start with "str" | `select(df, starts_with("str"))` | `df.select(pl.col("^bill.*$"))` or `df.select(cs.starts_with("str"))`[1] |
-| select numeric columns | `select(df, where(is.numeric))` | `df.select(cs.float(), cs.integer())`[1] |
+| select numeric columns | `select(df, where(is.numeric))` | `df.select(cs.float(), cs.integer())`[1,2] |
 | filter range of values | `filter(df, between(x, lo, hi))` | `df.filter(pl.col("x").is_between(lo, hi))` |
 
 [1] requires `import polars.selectors as cs`
-Please note that you can also [cast()](https://docs.pola.rs/user-guide/expressions/casting/#numerics) columns from one type to another (e.g. Float to Int).
+
+[2] Please note that you can also [cast()](https://docs.pola.rs/user-guide/expressions/casting/#numerics) columns from one type to another (e.g. Float to Int).
 
 **For example**, return all columns starting with "bill" for the penguin species "Gentoo":
 
