@@ -63,7 +63,7 @@ shape: (344, 9)
 │ 344   ┆ Chinstrap ┆ Dream     ┆ 50.2           ┆ … ┆ 198               ┆ 3775        ┆ female ┆ 2009 │
 └───────┴───────────┴───────────┴────────────────┴───┴───────────────────┴─────────────┴────────┴──────┘
 ```
-The following table compares the main functions of polars with the R package dplyr:
+The following table compares the main functions of _polars_ with the R package _dplyr_:
  
 |  | dplyr | polars |
 | :---         |     :---      |          :--- |
@@ -73,7 +73,7 @@ The following table compares the main functions of polars with the R package dpl
 | pick rows | `filter(df, x > 4)` | `df.filter(pl.col("x") > 4 )` |
 | sort column | `arrange(df, x)` | `df.sort("x")` |
 
-You see, these commands are basically the same between dplyr and polars.
+You see, these commands are basically the same between _dplyr_ and _polars_.
 
 **For example**, we want to get the `bill_length_mm` of all penguins with `body_mass_g` below 3800:
 
@@ -137,7 +137,7 @@ shape: (124, 2)
 # Creating and renaming new columns
 
 One of the most used commands in my dplyr workflow is the `mutate` function for creating columns.
-The polars equivalent is called `with_columns` and works similarly
+The polars equivalent is called `with_columns` and works similarly:
 
 |  | dplyr | polars |
 | :---         |     :---      |          :--- |
@@ -169,7 +169,7 @@ shape: (344, 10)
 # Grouping and aggregating
 
 Aggregating and grouping data are essential skills for data analysis, as they allow you to summarize, transform, and manipulate data in meaningful ways.
-Again, these commands are very similar between dplyr and polars
+Again, these commands are very similar between _dplyr_ and _polars_:
 
 |  | dplyr | polars |
 | :---         |     :---      |          :--- |
