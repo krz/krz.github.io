@@ -99,7 +99,7 @@ shape: (129, 1)
 
 # Advanced `filter` and `select`
 
-Like in dplyr, polars filter and select have many more capabilities:
+Like in dplyr, polars `filter` and `select` have many more capabilities:
 
 |  | dplyr | polars |
 | :---         |     :---      |          :--- |
@@ -176,7 +176,7 @@ Again, these commands are very similar between dplyr and polars
 | group |  `group_by(df, x)`  | `df.group_by("x")`  |
 | summarize | `summarize(df, x_n = n())` | `df.agg(pl.count().alias("x_n"))` |
 
-For example, group the data by species and count the number of penguins of each species, then sort in descending order:
+**For example**, group the data by species and count the number of penguins of each species, then sort in descending order:
 ```python
 > df.group_by("species").agg(pl.count().alias("counts")).sort("counts", descending=True)
 shape: (3, 2)
