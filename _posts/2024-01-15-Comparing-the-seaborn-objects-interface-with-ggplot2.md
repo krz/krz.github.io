@@ -25,7 +25,7 @@ mpg = pl.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data
 
 there's also `so.Dots()` which sometimes looks nicer, but I stick to `so.Dot()` to keep it similar to ggplot.
 
-**dplyr**
+**ggplot**
 ```r
 ggplot(mpg, aes(displ, hwy)) + 
   geom_point()
@@ -42,7 +42,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 map the class variable to colour
 
-**dplyr**
+**ggplot**
 ```r
 ggplot(mpg, aes(displ, hwy, colour = class)) + 
   geom_point()
@@ -59,7 +59,7 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
 
 map the class variable to pointsize
 
-**dplyr**
+**ggplot**
 ```r
 ggplot(mpg, aes(displ, hwy, size = class)) + 
   geom_point()
@@ -76,7 +76,7 @@ ggplot(mpg, aes(displ, hwy, size = class)) +
 
 map the class variable to alpha
 
-**dplyr**
+**ggplot**
 ```r
 ggplot(mpg, aes(displ, hwy, alpha = class)) + 
   geom_point()
@@ -93,7 +93,7 @@ ggplot(mpg, aes(displ, hwy, alpha = class)) +
 
 map the class variable to shape
 
-**dplyr**
+**ggplot**
 ```r
 ggplot(mpg, aes(displ, hwy, shape = class)) + 
   geom_point()
@@ -110,7 +110,7 @@ ggplot(mpg, aes(displ, hwy, shape = class)) +
 
 ## Faceting
 
-**dplyr**
+**ggplot**
 ```r
 ggplot(mpg, aes(displ, hwy)) + 
   geom_point() + 
@@ -132,7 +132,7 @@ the `wrap=3` argument limits it to 3 plots per column, like the ggplot example
 
 ## Adding a smoother to a plot
 
-**dplyr**
+**ggplot**
 ```r
 ggplot(mpg, aes(displ, hwy)) + 
   geom_point() + 
@@ -158,7 +158,7 @@ seaborn objects does not yet support boxplots and violinplots
 
 ## Histograms and frequency polygons
 
-**dplyr**
+**ggplot**
 ```r
 ggplot(mpg, aes(hwy)) + geom_histogram()
 ```
@@ -174,7 +174,7 @@ ggplot(mpg, aes(hwy)) + geom_histogram()
 
 seaborn does not support frequency polygons, so we use KDE instead
 
-**dplyr**
+**ggplot**
 ```r
 ggplot(mpg, aes(hwy)) + geom_freqpoly(binwidth = 1)
 ```
@@ -188,6 +188,20 @@ ggplot(mpg, aes(hwy)) + geom_freqpoly(binwidth = 1)
 ```
 ![](/images/output9.png)
 
+## Bar charts
 
+**ggplot**
+```R
+ggplot(mpg, aes(manufacturer)) + 
+  geom_bar()
+```
 
+**seaborn**
+```python
+(
+    so.Plot(mpg, x="manufacturer")
+    .add(so.Bar(), so.Hist())
+)
+```
+![](/images/output10.png)
 
