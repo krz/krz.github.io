@@ -169,3 +169,22 @@ ggplot(mpg, aes(hwy)) + geom_histogram()
 ```
 ![](/images/output8.png)
 
+seaborn does not support frequency polygons, so we use KDE instead
+
+**dplyr**
+```r
+ggplot(mpg, aes(hwy)) + geom_freqpoly(binwidth = 1)
+```
+
+**seaborn**
+```python
+(
+    so.Plot(mpg, x="hwy")
+    .add(so.Area(), so.KDE(bw_adjust=0.2))
+)
+```
+![](/images/output9.png)
+
+
+
+
