@@ -222,4 +222,3 @@ economics = pl.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/mai
 )
 ```
 ![](/images/output11.png)
-
