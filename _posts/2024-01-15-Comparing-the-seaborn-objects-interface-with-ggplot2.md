@@ -20,7 +20,7 @@ import polars as pl
 
 mpg = pl.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/mpg.csv")
 ```
-first plot
+## Simple dot plots
 
 **dplyr**:
 ```r
@@ -105,4 +105,22 @@ ggplot(mpg, aes(displ, hwy, shape = class)) +
 ```
 ![](/images/output5.png)
 
+## Faceting
 
+**dplyr**:
+```r
+ggplot(mpg, aes(displ, hwy)) + 
+  geom_point() + 
+  facet_wrap(~class)
+```
+
+**seaborn**:
+the `wrap=3` argument limits it to 3 plots per column, like the ggplot example
+```python
+(
+    so.Plot(mpg, x="displ", y="hwy")
+    .add(so.Dot())
+    .facet("class", wrap=3)
+)
+```
+![](/images/output6.png)
