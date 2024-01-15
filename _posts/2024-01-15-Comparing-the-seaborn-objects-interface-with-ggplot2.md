@@ -209,8 +209,8 @@ ggplot(mpg, aes(manufacturer)) +
 
 **ggplot**
 ```R
-ggplot(mpg, aes(manufacturer)) + 
-  geom_bar()
+ggplot(economics, aes(date, uempmed)) +
+  geom_line()
 ```
 
 **seaborn**
@@ -219,8 +219,8 @@ ggplot(mpg, aes(manufacturer)) +
 import pandas as pd
 economics = pd.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/economics.csv")
 
-# for some reason, seaborn fails with the polars dataframe
-economics = pl.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/economics.csv", try_parse_dates=True, dtypes={"pop": pl.Float32, "date": pl.Date, "uempmed": pl.Float64})
+# for some reason, seaborn fails plotting with the polars dataframe
+# economics = pl.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/economics.csv", try_parse_dates=True, dtypes={"pop": pl.Float32, "date": pl.Date, "uempmed": pl.Float64})
 
 (
     so.Plot(economics, x="date", y="uempmed")
