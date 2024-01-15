@@ -27,3 +27,20 @@ mpg = pl.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data
     .add(so.Dot())
 )
 ```
+![](/images/output1.png)
+
+```python
+(
+    so.Plot(mpg, x="displ", y="hwy", color="class")
+    .add(so.Dot())
+)
+```
+![](/images/output2.png)
+
+```python
+(
+    so.Plot(mpg, x="displ", y="hwy", pointsize="class")
+    .add(so.Dot())
+)
+```
+![](/images/output3.png)
