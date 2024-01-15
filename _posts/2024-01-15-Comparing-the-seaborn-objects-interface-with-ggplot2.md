@@ -9,6 +9,7 @@ It offers a more consistent and flexible API, comprising a collection of composa
 This interface allows for end-to-end plot specification and customization without dropping down to the matplotlib level, making it suitable for more complex plots with multiple layers and mark types. 
 While the interface is still experimental and incomplete, it provides a modular and Pythonic API that is informed by ggplot2's design philosophy.
 In this post, I replicate the plots from the [ggplot2 book](https://ggplot2-book.org/getting-started) using the seaborn objects interface.
+
 This is a work in progress.
 
 # Getting started
@@ -21,6 +22,8 @@ import polars as pl
 mpg = pl.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/mpg.csv")
 ```
 ## Simple dot plots
+
+there's also `so.Dots()` which sometimes looks nicer, but I stick to `so.Dot()` to keep it similar to ggplot.
 
 **dplyr**
 ```r
