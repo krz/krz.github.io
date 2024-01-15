@@ -115,6 +115,7 @@ ggplot(mpg, aes(displ, hwy)) +
 ```
 
 **seaborn**:
+
 the `wrap=3` argument limits it to 3 plots per column, like the ggplot example
 ```python
 (
@@ -136,8 +137,9 @@ ggplot(mpg, aes(displ, hwy)) +
 ```
 
 **seaborn**:
-Unfortunately, seaborn objects does not have an option for a confidence band yet ([StackOVerflow discussion](https://stackoverflow.com/questions/75691072/plot-regression-confidence-interval-using-seaborn-objects-interface-v0-12))
-and the smoother is not LOESS (as in ggplot) but but a [polynomial fit](https://github.com/mwaskom/seaborn/issues/3320)
+
+Unfortunately, seaborn objects does not have an option for a confidence band yet ([StackOverflow discussion](https://stackoverflow.com/questions/75691072/plot-regression-confidence-interval-using-seaborn-objects-interface-v0-12))
+and the smoother is not LOESS (as in ggplot) but a [polynomial fit](https://github.com/mwaskom/seaborn/issues/3320)
 ```python
 (
     so.Plot(mpg, x="displ", y="hwy")
