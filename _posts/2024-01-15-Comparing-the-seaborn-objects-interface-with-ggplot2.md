@@ -205,3 +205,27 @@ ggplot(mpg, aes(manufacturer)) +
 ```
 ![](/images/output10.png)
 
+## Time series
+
+**ggplot**
+```R
+ggplot(mpg, aes(manufacturer)) + 
+  geom_bar()
+```
+
+**seaborn**
+```python
+# read in the data
+import pandas as pd
+economics = pd.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/economics.csv")
+
+# for some reason, seaborn fails with the polars dataframe
+economics = pl.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/economics.csv", try_parse_dates=True, dtypes={"pop": pl.Float32, "date": pl.Date, "uempmed": pl.Float64})
+
+(
+    so.Plot(economics, x="date", y="uempmed")
+    .add(so.Path())
+)
+```
+![](/images/output11.png)
+
