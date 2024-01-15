@@ -215,8 +215,7 @@ ggplot(economics, aes(date, uempmed)) +
 
 **seaborn**
 ```python
-economics = pl.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/economics.csv", try_parse_dates=True, dtypes={"pop": pl.Float32, "date": pl.Date, "uempmed": pl.Float64})
-
+economics = pl.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/economics.csv", try_parse_dates=True, dtypes={"pop": pl.Float32})
 (
     so.Plot(economics.to_pandas(), x="date", y="uempmed")
     .add(so.Path())
