@@ -86,7 +86,7 @@ ggplot(mpg, aes(displ, hwy, alpha = class)) +
     .add(so.Dot())
 )
 ```
-
+![](/images/output4.png)
 
 
 
