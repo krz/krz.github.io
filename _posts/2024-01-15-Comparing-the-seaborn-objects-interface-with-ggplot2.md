@@ -124,3 +124,25 @@ the `wrap=3` argument limits it to 3 plots per column, like the ggplot example
 )
 ```
 ![](/images/output6.png)
+
+
+## Adding a smoother to a plot
+
+**dplyr**:
+```r
+ggplot(mpg, aes(displ, hwy)) + 
+  geom_point() + 
+  geom_smooth()
+```
+
+**seaborn**:
+Unfortunately, seaborn objects does not have an option for a confidence band yet
+and the smoother is not LOESS (as in ggplot) but but a [polynomial fit](https://github.com/mwaskom/seaborn/issues/3320)
+```python
+(
+    so.Plot(mpg, x="displ", y="hwy")
+    .add(so.Dot(color="black"))
+    .add(so.Line(), so.PolyFit(order=5))
+)
+```
+![](/images/output7.png)
