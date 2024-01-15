@@ -22,13 +22,13 @@ mpg = pl.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data
 ```
 ## Simple dot plots
 
-**dplyr**:
+**dplyr**
 ```r
 ggplot(mpg, aes(displ, hwy)) + 
   geom_point()
 ```
 
-**seaborn**:
+**seaborn**
 ```python
 (
     so.Plot(mpg, x="displ", y="hwy")
@@ -39,7 +39,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 map the class variable to colour
 
-**dplyr**:
+**dplyr**
 ```r
 ggplot(mpg, aes(displ, hwy, colour = class)) + 
   geom_point()
@@ -56,13 +56,13 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
 
 map the class variable to pointsize
 
-**dplyr**:
+**dplyr**
 ```r
 ggplot(mpg, aes(displ, hwy, size = class)) + 
   geom_point()
 ```
 
-**seaborn**:
+**seaborn**
 ```python
 (
     so.Plot(mpg, x="displ", y="hwy", pointsize="class")
@@ -73,13 +73,13 @@ ggplot(mpg, aes(displ, hwy, size = class)) +
 
 map the class variable to alpha
 
-**dplyr**:
+**dplyr**
 ```r
 ggplot(mpg, aes(displ, hwy, alpha = class)) + 
   geom_point()
 ```
 
-**seaborn**:
+**seaborn**
 ```python
 (
     so.Plot(mpg, x="displ", y="hwy", alpha="class")
@@ -90,13 +90,13 @@ ggplot(mpg, aes(displ, hwy, alpha = class)) +
 
 map the class variable to shape
 
-**dplyr**:
+**dplyr**
 ```r
 ggplot(mpg, aes(displ, hwy, shape = class)) + 
   geom_point()
 ```
 
-**seaborn**:
+**seaborn**
 ```python
 (
     so.Plot(mpg, x="displ", y="hwy", marker="class")
@@ -107,14 +107,14 @@ ggplot(mpg, aes(displ, hwy, shape = class)) +
 
 ## Faceting
 
-**dplyr**:
+**dplyr**
 ```r
 ggplot(mpg, aes(displ, hwy)) + 
   geom_point() + 
   facet_wrap(~class)
 ```
 
-**seaborn**:
+**seaborn**
 
 the `wrap=3` argument limits it to 3 plots per column, like the ggplot example
 ```python
@@ -129,14 +129,14 @@ the `wrap=3` argument limits it to 3 plots per column, like the ggplot example
 
 ## Adding a smoother to a plot
 
-**dplyr**:
+**dplyr**
 ```r
 ggplot(mpg, aes(displ, hwy)) + 
   geom_point() + 
   geom_smooth()
 ```
 
-**seaborn**:
+**seaborn**
 
 Unfortunately, seaborn objects does not have an option for a confidence band yet ([StackOverflow discussion](https://stackoverflow.com/questions/75691072/plot-regression-confidence-interval-using-seaborn-objects-interface-v0-12))
 and the smoother is not LOESS (as in ggplot) but a [polynomial fit](https://github.com/mwaskom/seaborn/issues/3320)
@@ -148,3 +148,24 @@ and the smoother is not LOESS (as in ggplot) but a [polynomial fit](https://gith
 )
 ```
 ![](/images/output7.png)
+
+## Boxplots
+
+seaborn objects does not yet support boxplots and violinplots
+
+## Histograms and frequency polygons
+
+**dplyr**
+```r
+ggplot(mpg, aes(hwy)) + geom_histogram()
+```
+
+**seaborn**
+```python
+(
+    so.Plot(mpg, x="hwy")
+    .add(so.Bars(), so.Hist(bins=30))
+)
+```
+![](/images/output8.png)
+
