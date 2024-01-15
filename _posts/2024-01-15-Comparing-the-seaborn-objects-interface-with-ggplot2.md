@@ -22,13 +22,13 @@ mpg = pl.read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/main/data
 ```
 first plot
 
-*dplyr*:
+**dplyr**:
 ```r
 ggplot(mpg, aes(displ, hwy)) + 
   geom_point()
 ```
 
-*seaborn*:
+**seaborn**:
 ```python
 (
     so.Plot(mpg, x="displ", y="hwy")
@@ -39,13 +39,13 @@ ggplot(mpg, aes(displ, hwy)) +
 
 map the class variable to colour
 
-*dplyr*:
+**dplyr**:
 ```r
 ggplot(mpg, aes(displ, hwy, colour = class)) + 
   geom_point()
 ```
 
-*seaborn*
+**seaborn**
 ```python
 (
     so.Plot(mpg, x="displ", y="hwy", color="class")
@@ -56,13 +56,13 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
 
 map the class variable to pointsize
 
-*dplyr*:
+**dplyr**:
 ```r
 ggplot(mpg, aes(displ, hwy, size = class)) + 
   geom_point()
 ```
 
-*seaborn*:
+**seaborn**:
 ```python
 (
     so.Plot(mpg, x="displ", y="hwy", pointsize="class")
@@ -73,13 +73,13 @@ ggplot(mpg, aes(displ, hwy, size = class)) +
 
 map the class variable to alpha
 
-*dplyr*:
+**dplyr**:
 ```r
 ggplot(mpg, aes(displ, hwy, alpha = class)) + 
   geom_point()
 ```
 
-*seaborn*:
+**seaborn**:
 ```python
 (
     so.Plot(mpg, x="displ", y="hwy", alpha="class")
@@ -88,6 +88,21 @@ ggplot(mpg, aes(displ, hwy, alpha = class)) +
 ```
 ![](/images/output4.png)
 
+map the class variable to shape
 
+**dplyr**:
+```r
+ggplot(mpg, aes(displ, hwy, shape = class)) + 
+  geom_point()
+```
+
+**seaborn**:
+```python
+(
+    so.Plot(mpg, x="displ", y="hwy", marker="class")
+    .add(so.Dot())
+)
+```
+![](/images/output5.png)
 
 
