@@ -102,7 +102,7 @@ This scenario poses a problem as it could lead to an imbalance in anxiety levels
 By accounting for anxiety diagnosis (variable \\(X\\)), we avoid biased cortisol level estimates between therapy-receiving and non-receiving groups.
 
 
-For example, the following table includes data for twelve hospital patients who self-selected therapy toys. Variables include anxiety diagnosis (\\)X=1\\) for anxiety, \\(X=0\\) for no anxiety) and treatment assignment (\\(Z=1\\) for therapy, \\(Z=0\\) for no therapy). As this reflects reality, only the observed outcome \\(Y\\) (cortisol level) is available.
+For example, the following table includes data for twelve hospital patients who self-selected therapy toys. Variables include anxiety diagnosis (\\(X=1\\) for anxiety, \\(X=0\\) for no anxiety) and treatment assignment (\\(Z=1\\) for therapy, \\(Z=0\\) for no therapy). As this reflects reality, only the observed outcome \\(Y\\) (cortisol level) is available.
 
 Without considering anxiety (\\(X\\)), computing the estimated ATE as if treatment were randomized yields -2.9. This suggests therapy toys services reduce cortisol levels by an average of 2.9 units.
 
@@ -121,9 +121,11 @@ Without considering anxiety (\\(X\\)), computing the estimated ATE as if treatme
 | 0 | 0 | 14 |
 | 0 | 0 | 15 |
 
-Average \\(Y\\) for \\(Z=1\\): (18+17+15+16+9+8)/6 = 13.8
-Average \\(Y\\) for \\(Z=0\\): (23+21+14+13+14+15)/6 = 16.7
-Estimated ATE: 13.8 - 16.7 = -2.9
+__Average \\(Y\\) for \\(Z=1\\)__: (18+17+15+16+9+8)/6 = 13.8
+
+__Average \\(Y\\) for \\(Z=0\\)__: (23+21+14+13+14+15)/6 = 16.7
+
+__Estimated ATE__: 13.8 - 16.7 = -2.9
 
 
 To address the anxiety variable, we compute the ATE specifically for patients diagnosed with anxiety disorder (\\(X=1\\)). By subtracting the average cortisol level for control patients from the treated group, we aim to ensure similar cortisol levels before therapy. This yields an estimated ATE of -5.5 for individuals with anxiety, significantly higher than the initial estimate of -2.9.
@@ -138,9 +140,11 @@ To address the anxiety variable, we compute the ATE specifically for patients di
 | 1 | 0 | 21 |
 
 
-Average \\(Y\\) for \\(Z=1\\): (18+17+15+16)/4 = 16.5
-Average \\(Y\\) for \\(Z=0\\): (23+21)/2= 22.0
-Estimated ATE for \\(X=1\\): 16.5 - 22.0 = -5.5
+__Average \\(Y\\) for \\(Z=1\\)__: (18+17+15+16)/4 = 16.5
+
+__Average \\(Y\\) for \\(Z=0\\)__: (23+21)/2= 22.0
+
+__Estimated ATE for \\(X=1\\)__: 16.5 - 22.0 = -5.5
 
 Next, we calculate the ATE specifically for patients without an anxiety disorder diagnosis (\\(X=0\\)). The estimated ATE for individuals without anxiety is also -5.5.
 
@@ -153,9 +157,11 @@ Next, we calculate the ATE specifically for patients without an anxiety disorder
 | 0 | 0 | 14 |
 | 0 | 0 | 15 |
 
-Average \\(Y\\) for \\(Z=1\\): (9+8)/2 = 8.5
-Average \\(Y\\) for \\(Z=0\\): (14+13+14+15)/4 = 14.0
-Estimated ATE for \\(X=0\\): 8.5 - 14.0 = -5.5
+__Average \\(Y\\) for \\(Z=1\\)__: (9+8)/2 = 8.5
+
+__Average \\(Y\\) for \\(Z=0\\)__: (14+13+14+15)/4 = 14.0
+
+__Estimated ATE for \\(X=0\\)__: 8.5 - 14.0 = -5.5
 
 When considering \\(X\\), averaging the ATEs of both groups yields an estimated ATE of -5.5. This is closer to the true ATE of -5.8, indicating that therapy animal services reduce cortisol levels by an average of 5.8 units. Accounting for confounding significantly improved our estimate's accuracy.
 
