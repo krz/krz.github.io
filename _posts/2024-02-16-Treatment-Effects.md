@@ -60,3 +60,20 @@ Real data includes only one potential outcome per individual. Notably, \\(Y^1\\)
 | 0 | ?  | 14 | ?       |
 | 1 | 10 | ?  | ?       |
 | Average | ? | ?  | ?  |
+
+
+## Estimating the ATE
+
+To estimate causal effects without knowing both potential outcomes for individuals, we rely on __randomization__, a method of treatment assignment akin to a coin flip. This ensures similarity between treatment groups, except for the treatment itself. While we can't observe individual counterfactual outcomes, we can reasonably assume similar individuals received each treatment, allowing us to estimate unobserved potential outcomes.
+
+With randomization, we estimate the ATE by comparing average observed outcomes between treatment and control groups. In our example, the estimated ATE is -5.4, closely aligning with the true ATE of -5.8 calculated earlier.
+
+Average Y for Z=1
+(18 + 16 + 15 + 8 + 10 + 10) / 6 = 12.8
+
+Average Y for Z=0
+(22 + 23 + 23 + 14 + 13 + 14) / 6 = 18.2
+
+Estimated ATE from Randomized Treatment
+12.8 - 18.2 = -5.4
+
