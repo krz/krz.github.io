@@ -68,7 +68,7 @@ To estimate causal effects without knowing both potential outcomes for individua
 
 With randomization, we estimate the ATE by comparing average observed outcomes between treatment and control groups. In our example, the estimated ATE is -5.4, closely aligning with the true ATE of -5.8 calculated earlier.
 
-__Average (\\(Y\\)) for \\(Z = 1\\)__: (18 + 16 + 15 + 8 + 10 + 10) / 6 = 12.8
+__Average \\(Y\\) for \\(Z = 1\\)__: (18 + 16 + 15 + 8 + 10 + 10) / 6 = 12.8
 
 __Average \\(Y\\) for \\(Z = 0\\)__: (22 + 23 + 23 + 14 + 13 + 14) / 6 = 18.2
 
@@ -92,7 +92,7 @@ Variables associated with treatment assignment that also affect the outcome (cor
 
 To estimate the ATE in the presence of confounders, we must address how treatment assignment impacts outcomes when randomization isn't feasible. Consider our stress-relief example:
 
-Instead of random assignment, let's imagine patients can choose therapy. Additionally, we have data on a new confounding variable \\(X\\) indicating anxiety diagnosis \\(X = 1\\) or absence \\(X = 0\\). Anxiety status influences treatment choice and cortisol levels: those with anxiety may opt for therapy and have higher cortisol levels.
+Instead of random assignment, let's imagine patients can choose therapy. Additionally, we have data on a new confounding variable \\(X\\) indicating anxiety diagnosis (\\(X = 1\\)) or absence (\\(X = 0\\)). Anxiety status influences treatment choice and cortisol levels: those with anxiety may opt for therapy and have higher cortisol levels.
 
 This scenario poses a problem as it could lead to an imbalance in anxiety levels between treatment groups. Conditional exchangeability is crucial here:
 
