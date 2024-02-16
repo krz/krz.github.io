@@ -157,3 +157,10 @@ Average \\(Y\\) for \\(Z=1\\): (9+8)/2 = 8.5
 Average \\(Y\\) for \\(Z=0\\): (14+13+14+15)/4 = 14.0
 Estimated ATE for \\(X=0\\): 8.5 - 14.0 = -5.5
 
+When considering \\(X\\), averaging the ATEs of both groups yields an estimated ATE of -5.5. This is closer to the true ATE of -5.8, indicating that therapy animal services reduce cortisol levels by an average of 5.8 units. Accounting for confounding significantly improved our estimate's accuracy.
+
+| ATE Estimate   | Value |
+|----------------|-------|
+| Ignoring X     | -2.9  |
+| Accounting for X | -5.5 |
+| True Value     | -5.8  |
