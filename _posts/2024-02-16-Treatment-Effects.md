@@ -68,12 +68,9 @@ To estimate causal effects without knowing both potential outcomes for individua
 
 With randomization, we estimate the ATE by comparing average observed outcomes between treatment and control groups. In our example, the estimated ATE is -5.4, closely aligning with the true ATE of -5.8 calculated earlier.
 
-Average Y for Z=1
-(18 + 16 + 15 + 8 + 10 + 10) / 6 = 12.8
+__Average (\\(Y\\)) for \\(Z = 1\\)__: (18 + 16 + 15 + 8 + 10 + 10) / 6 = 12.8
 
-Average Y for Z=0
-(22 + 23 + 23 + 14 + 13 + 14) / 6 = 18.2
+__Average \\(Y\\) for \\(Z = 0\\)__: (22 + 23 + 23 + 14 + 13 + 14) / 6 = 18.2
 
-Estimated ATE from Randomized Treatment
-12.8 - 18.2 = -5.4
+__Estimated ATE from Randomized Treatment__: 12.8 - 18.2 = -5.4
 
