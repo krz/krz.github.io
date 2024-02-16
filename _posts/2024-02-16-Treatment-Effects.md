@@ -74,3 +74,31 @@ __Average \\(Y\\) for \\(Z = 0\\)__: (22 + 23 + 23 + 14 + 13 + 14) / 6 = 18.2
 
 __Estimated ATE from Randomized Treatment__: 12.8 - 18.2 = -5.4
 
+
+## Confounders and Selection Bias
+
+When randomization isn't feasible due to ethical or practical reasons, bias can affect causal effect estimates. Selection bias is a primary concern, occurring when individuals are assigned to treatment or control groups non-randomly.
+
+In our stress-relief toy example, selection bias may occur if:
+
+* Individuals self-select for therapy.
+* Control group individuals originate from a different hospital.
+* Access to therapy is tied to external factors like insurance.
+
+Variables associated with treatment assignment that also affect the outcome (cortisol level) are confounders. These can lead to erroneous conclusions about treatment impact.
+
+
+## Estimating the ATE with Confounders
+
+To estimate the ATE in the presence of confounders, we must address how treatment assignment impacts outcomes when randomization isn't feasible. Consider our stress-relief example:
+
+Instead of random assignment, let's imagine patients can choose therapy. Additionally, we have data on a new confounding variable \\(X\\) indicating anxiety diagnosis \\(X = 1\\) or absence \\(X = 0\\). Anxiety status influences treatment choice and cortisol levels: those with anxiety may opt for therapy and have higher cortisol levels.
+
+This scenario poses a problem as it could lead to an imbalance in anxiety levels between treatment groups. Conditional exchangeability is crucial here:
+
+* Conditional exchangeability ensures treatment groups are comparable when considering confounding variables.
+* This concept, also known as ignorability or unconfoundedness, prevents biased estimates.
+
+By accounting for anxiety diagnosis (variable \\(X\\)), we avoid biased cortisol level estimates between therapy-receiving and non-receiving groups.
+
+
