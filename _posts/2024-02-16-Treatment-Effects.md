@@ -24,7 +24,7 @@ If we had access to both potential outcomes for each individual, we could derive
 
 However, a crucial challenge arises: how do we compute ITE or the true ATE when we can't observe the counterfactual outcome? This highlights the core issue of causal inference, which is essentially grappling with missing data. Since we only witness the actual outcome, the counterfactual remains elusive.
 
-The following table displays data for 12 hospital patients who either interacted with a stress-relief toy \\(Z = 1\\)) or did not interact with a stress-relief toy \\(Z = 0\\)). 
+The following table displays data for 12 hospital patients who either interacted with a stress-relief toy (\\(Z = 1\\)) or did not interact with a stress-relief toy (\\(Z = 0\\)). 
 The theoretical data contains both potential outcomes, allowing us to compute the true ATE by subtracting the potential outcome averages. The true ATE is -5.8, indicating that interaction with stress-relief toys results in an average decrease in cortisol levels of 5.8 units.
 
 | Z | Y¹ | Y° | Y¹ - Y° |
@@ -43,7 +43,7 @@ The theoretical data contains both potential outcomes, allowing us to compute th
 | 1 | 10 | 15 | -5      |
 | Average | 12.6 | 18.4 | -5.8 |
 
-Real data includes only one potential outcome per individual. Notably, \\(Y^1\\)) values are absent for individuals in the control group \\(Z = 0\\)), while \\(Y^0\\)) values are absent for those in the treatment group \\(Z = 1\\)). Consequently, in practical scenarios, we consistently lack half of the necessary data to compute the true ATE.
+Real data includes only one potential outcome per individual. Notably, \\(Y^1\\) values are absent for individuals in the control group (\\(Z = 0\\)), while \\(Y^0\\) values are absent for those in the treatment group (\\(Z = 1\\)). Consequently, in practical scenarios, we consistently lack half of the necessary data to compute the true ATE.
 
 | Z | Y¹ | Y° | Y¹ - Y° |
 |---|----|----|---------|
