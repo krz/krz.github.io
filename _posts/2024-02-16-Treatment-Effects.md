@@ -102,3 +102,58 @@ This scenario poses a problem as it could lead to an imbalance in anxiety levels
 By accounting for anxiety diagnosis (variable \\(X\\)), we avoid biased cortisol level estimates between therapy-receiving and non-receiving groups.
 
 
+For example, the following table includes data for twelve hospital patients who self-selected therapy toys. Variables include anxiety diagnosis (\\)X=1\\) for anxiety, \\(X=0\\) for no anxiety) and treatment assignment (\\(Z=1\\) for therapy, \\(Z=0\\) for no therapy). As this reflects reality, only the observed outcome \\(Y\\) (cortisol level) is available.
+
+Without considering anxiety (\\(X\\)), computing the estimated ATE as if treatment were randomized yields -2.9. This suggests therapy toys services reduce cortisol levels by an average of 2.9 units.
+
+| X | Z | Y  |
+|---|---|----|
+| 1 | 1 | 18 |
+| 1 | 1 | 17 |
+| 1 | 1 | 15 |
+| 1 | 1 | 16 |
+| 1 | 0 | 23 |
+| 1 | 0 | 21 |
+| 0 | 1 | 9  |
+| 0 | 1 | 8  |
+| 0 | 0 | 14 |
+| 0 | 0 | 13 |
+| 0 | 0 | 14 |
+| 0 | 0 | 15 |
+
+Average \\(Y\\) for \\(Z=1\\): (18+17+15+16+9+8)/6 = 13.8
+Average \\(Y\\) for \\(Z=0\\): (23+21+14+13+14+15)/6 = 16.7
+Estimated ATE: 13.8 - 16.7 = -2.9
+
+
+To address the anxiety variable, we compute the ATE specifically for patients diagnosed with anxiety disorder (\\(X=1\\)). By subtracting the average cortisol level for control patients from the treated group, we aim to ensure similar cortisol levels before therapy. This yields an estimated ATE of -5.5 for individuals with anxiety, significantly higher than the initial estimate of -2.9.
+
+| X | Z | Y  |
+|---|---|----|
+| 1 | 1 | 18 |
+| 1 | 1 | 17 |
+| 1 | 1 | 15 |
+| 1 | 1 | 16 |
+| 1 | 0 | 23 |
+| 1 | 0 | 21 |
+
+
+Average \\(Y\\) for \\(Z=1\\): (18+17+15+16)/4 = 16.5
+Average \\(Y\\) for \\(Z=0\\): (23+21)/2= 22.0
+Estimated ATE for \\(X=1\\): 16.5 - 22.0 = -5.5
+
+Next, we calculate the ATE specifically for patients without an anxiety disorder diagnosis (\\(X=0\\)). The estimated ATE for individuals without anxiety is also -5.5.
+
+| X | Z | Y  |
+|---|---|----|
+| 0 | 1 | 9  |
+| 0 | 1 | 8  |
+| 0 | 0 | 14 |
+| 0 | 0 | 13 |
+| 0 | 0 | 14 |
+| 0 | 0 | 15 |
+
+Average \\(Y\\) for \\(Z=1\\): (9+8)/2 = 8.5
+Average \\(Y\\) for \\(Z=0\\): (14+13+14+15)/4 = 14.0
+Estimated ATE for \\(X=0\\): 8.5 - 14.0 = -5.5
+
