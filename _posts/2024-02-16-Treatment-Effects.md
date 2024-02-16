@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Treatment Effects
-categories: [r,python]
+categories: [r,python,causal inference]
 ---
+
+In the realm of healthcare, education, and policy-making, understanding the effects of treatments and interventions is paramount. However, discerning causality from mere correlation can be challenging. In this blog post, I invite you on a journey to unravel the complexities of estimating the true impact of interventions. From exploring randomized controlled trials to delving into the intricacies of confounding variables, join me as we navigate through the fascinating world of causal inference and uncover the methods and insights essential for evidence-based decision-making.
 
 ## Potential Outcomes Notation
 
