@@ -11,11 +11,10 @@ Reading the data is pretty straightforward:
 
 ```python
 import polars as pl
-
-purchases = pl.read_csv("purchases.psv")
+purchases = pl.read_csv("purchases.csv")
 ```
 
-get the sum:
+get the sum of `amount` and name it `total`:
 
 ```python
 # dplyr:
@@ -38,7 +37,7 @@ same by country:
     .agg(pl.sum("amount").alias("total"))
 )
 ```
-deduct the discount:
+deduct the `discount`:
 ```python
 # dplyr:
 # purchases |> 
