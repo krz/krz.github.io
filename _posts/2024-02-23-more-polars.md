@@ -19,7 +19,8 @@ get the sum of `amount` and name it `total`:
 ```python
 # dplyr:
 # purchases$amount |> sum()
-# actually the "pure" tidy approach would be purchases |> select(amount) |> sum 😉
+# actually the "pure" tidy approach would be:
+# purchases |> select(amount) |> sum 😉
 
 purchases.select("amount").sum()
 ```
