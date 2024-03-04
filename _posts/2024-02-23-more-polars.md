@@ -71,7 +71,7 @@ Now we remove everything 10x larger than the median:
          .alias("total"))
 )
 ```
-Finally, we should use the median within each country:
+Finally, we should use the median _within_ each country:
 ```python
 # dplyr:
 # purchases |>
