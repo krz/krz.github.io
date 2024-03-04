@@ -21,7 +21,7 @@ However, examining the model structure reveals a clear __causal independence__ b
 3. Next, we’ll fit a model without \\(A\\), but \\(B\\): \\(Y \sim X + B\\)
 4. Finally, we’ll build a model with all four variables: \\(Y \sim X + A + B\\)
 
-Based on your intuition, which of the four models do you believe will accurately represent the causal independence between \\(X\)) and \\(Y\))?
+Based on your intuition, which of the four models do you believe will accurately represent the causal independence between \\(X\\) and \\(Y\\)?
 
 Let's generate some data:
 
