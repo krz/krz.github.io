@@ -14,7 +14,7 @@ import polars as pl
 purchases = pl.read_csv("purchases.csv")
 ```
 
-get the sum of `amount` and name it `total`:
+get the sum of `amount`:
 
 ```python
 # dplyr:
