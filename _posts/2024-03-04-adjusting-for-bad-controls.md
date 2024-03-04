@@ -16,12 +16,12 @@ Let's consider this example:
 In this example, we want to estimate the effect of \((X\)) on \((Y\)).
 However, examining the model structure reveals a clear __causal independence__ between variables \((X\)) and \((Y\)). There’s no arrow between them, nor is there a directed path that would connect them indirectly. We will now construct four models and investigate the impact of controlling for different variables on the emergence of spurious relationships between \((X\)) and \((Y\)).
 
-1. The first one is a simpel model that regresses \((Y\)) on \((X\)): \((Y \sim X\))
-2. Then, we’ll add \((A\)) to this model: \((Y \sim X + A\))
-3. Next, we’ll fit a model without \((A\)), but with \((B\)): \((Y \sim X + B\))
-4. Finally, we’ll build a model with all four variables: \((Y \sim X + A + B\))
+1. The first one is a simple model that regresses \\(Y\\) on \\(X\\): \\(Y \sim X\\)
+2. Then, we’ll add \\(A\\) to this model: \\(Y \sim X + A\\)
+3. Next, we’ll fit a model without \\(A\\), but \\(B\\): \\(Y \sim X + B\\)
+4. Finally, we’ll build a model with all four variables: \\(Y \sim X + A + B\\)
 
-Based on your intuition, which of the four models do you believe will accurately represent the causal independence between \((X\)) and \((Y\))?
+Based on your intuition, which of the four models do you believe will accurately represent the causal independence between \\(X\)) and \\(Y\))?
 
 Let's generate some data:
 
