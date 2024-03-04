@@ -14,7 +14,7 @@ Let's consider this example:
 ![](/images/scm.png)
 
 In this example, we want to estimate the effect of \((X\)) on \((Y\)).
-However, examining the model structure reveals a clear __causal independence__ between variables \((X\)) and \((Y\)). There’s no arrow between them, nor is there a directed path that would connect them indirectly. We will now construct four models and investigate the impact of controlling for different variables on the emergence of spurious relationships between \((X\)) and \((Y\)).
+However, examining the model structure reveals a clear __causal independence__ between variables \((X\)) and \((Y\)). There’s no arrow between them, nor is there a directed path that would connect them indirectly. We will now construct __four models__ and investigate the impact of controlling for different variables on the emergence of spurious relationships between \((X\)) and \((Y\)):
 
 1. The first one is a simple model that regresses \\(Y\\) on \\(X\\): \\(Y \sim X\\)
 2. Then, we’ll add \\(A\\) to this model: \\(Y \sim X + A\\)
@@ -39,6 +39,8 @@ b = 1.7 * x + 0.8 * y
 ```
 
 ### Model 1: \\(Y \sim X\\)
+
+This is the simple model that regresses \\(Y\\) on \\(X\\)
 
  ```python
 X1 = sm.add_constant(x)
@@ -76,11 +78,11 @@ Kurtosis:                       3.161   Cond. No.                         2.21
 ==============================================================================
 ```
 
-So this model finds a spurious effect of \\(X\\) on \\(Y\\), indicated by the low p-value (< 0.001).
+Apparently, this model finds a spurious effect of \\(X\\) on \\(Y\\), indicated by the low p-value (< 0.001).
 
 ### Model 2: \\(Y \sim X + A\\)
 
-What about model 2:
+What about model 2, we add \\(A\\) as a covariate:
 
 ```python
 X2 = sm.add_constant(np.stack([x, a]).T)
@@ -118,6 +120,8 @@ This model seems to recognize the causal independence of \\(X\\) and \\(Y\\) cor
 
 ### Model 3: \\(Y \sim X + B\\)
 
+In this model, we add \\(B\\) as a covariate instead of \\(A\\):
+
 ```python
 X3 = sm.add_constant(np.stack([x, b]).T)
 model_3 = sm.OLS(y, X3).fit()
@@ -151,7 +155,7 @@ Kurtosis:                       3.082   Cond. No.                         13.6
 ```
 
 Again, this model finds a spurious effect of \\(X\\) on \\(Y\\), indicated by the low p-value (< 0.001).
-Interestingly, caompared with model 1, this time the effect is negative.
+Interestingly, compared with model 1, this time the effect is negative.
 
 ### Model 4: \\(Y \sim X + A + B\\)
 
@@ -188,5 +192,7 @@ Skew:                          -0.018   Prob(JB):                        0.918
 Kurtosis:                       3.003   Cond. No.                         19.0
 ==============================================================================
 ```
+
+This model finds a spurious effect of \\(X\\) on \\(Y\\), again with a negative effect.
 
 
