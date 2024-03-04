@@ -207,3 +207,8 @@ Why did controlling for \\(A\\) succeed while other approaches failed? There are
 1. __Confounding Control__: \\(A\\) serves as a confounder between \\(X\\) and \\(Y\\), and we need to control for it in order to remove confounding. 
 2. __Collider Effect__: \\(X\\), \\(Y\\), and \\(B\\) exhibit a pattern known as a collider. Remarkably, this pattern facilitates the flow of information between the parent variables (\\(X\\) and \\(Y\\)) when the child variable (\\(B\\)) is controlled for—a stark contrast to the outcome when \\(A\\) is controlled for.
 3. __Effect of Variable Control__: Interestingly, not controlling for any variable produces the same outcome regarding the significance of \\(X\\) as controlling for both \\(A\\) and \\(B\\). While the coefficient results may differ, focusing on the structural properties of the system reveals that the effects of controlling for \\(A\\) and \\(B\\) are diametrically opposite, effectively nullifying each other's impact.
+4. 
+
+### References
+Cinelli, C., Forney, A., & Pearl, J. (2022). A Crash Course in Good and Bad Controls. Sociological Methods & Research, 0 (0), 1-34
+[https://ftp.cs.ucla.edu/pub/stat_ser/r493.pdf](https://ftp.cs.ucla.edu/pub/stat_ser/r493.pdf)
