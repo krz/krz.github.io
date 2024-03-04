@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Adjusting for "bad controls"
-categories: [python]
+categories: [python, causalinference]
 ---
 
 In every statistical analysis, the selection of covariates in regression models is akin to navigating a labyrinth. 
