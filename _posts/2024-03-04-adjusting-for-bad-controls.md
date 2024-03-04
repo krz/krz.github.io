@@ -124,5 +124,69 @@ model_3 = sm.OLS(y, X3).fit()
 print(model_3.summary(xname=['const', 'x', 'b']))
 ```
 
+```
+OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       1.000
+Model:                            OLS   Adj. R-squared:                  1.000
+Method:                 Least Squares   F-statistic:                 1.002e+32
+Date:                Mon, 04 Mar 2024   Prob (F-statistic):               0.00
+Time:                        13:18:27   Log-Likelihood:                 92892.
+No. Observations:                3000   AIC:                        -1.858e+05
+Df Residuals:                    2997   BIC:                        -1.858e+05
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const       2.932e-16   1.58e-16      1.858      0.063   -1.63e-17    6.03e-16
+x             -2.1250   3.48e-16  -6.11e+15      0.000      -2.125      -2.125
+b              1.2500   1.45e-16   8.61e+15      0.000       1.250       1.250
+==============================================================================
+Omnibus:                        1.629   Durbin-Watson:                   2.010
+Prob(Omnibus):                  0.443   Jarque-Bera (JB):                1.563
+Skew:                           0.038   Prob(JB):                        0.458
+Kurtosis:                       3.082   Cond. No.                         13.6
+==============================================================================
+```
+
+Again, this model finds a spurious effect of \\(X\\) on \\(Y\\), indicated by the low p-value (< 0.001).
+Interestingly, caompared with model 1, this time the effect is negative.
+
+### Model 4: \\(Y \sim X + A + B\\)
+
+Time for the last model which includes both \\(A\\) on \\(B\\).
+```python
+X4 = sm.add_constant(np.stack([x, a, b]).T)
+model_4 = sm.OLS(y, X4).fit()
+print(model_4.summary(xname=['const', 'x', 'a', 'b']))
+```
+
+```
+OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       1.000
+Model:                            OLS   Adj. R-squared:                  1.000
+Method:                 Least Squares   F-statistic:                 1.487e+32
+Date:                Mon, 04 Mar 2024   Prob (F-statistic):               0.00
+Time:                        13:22:49   Log-Likelihood:                 94094.
+No. Observations:                3000   AIC:                        -1.882e+05
+Df Residuals:                    2996   BIC:                        -1.882e+05
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const       2.515e-16   1.06e-16      2.377      0.018     4.4e-17    4.59e-16
+x             -2.1250   2.45e-16  -8.69e+15      0.000      -2.125      -2.125
+a           6.661e-16    3.1e-16      2.147      0.032    5.79e-17    1.27e-15
+b              1.2500   1.29e-16    9.7e+15      0.000       1.250       1.250
+==============================================================================
+Omnibus:                        0.182   Durbin-Watson:                   2.031
+Prob(Omnibus):                  0.913   Jarque-Bera (JB):                0.171
+Skew:                          -0.018   Prob(JB):                        0.918
+Kurtosis:                       3.003   Cond. No.                         19.0
+==============================================================================
+```
 
 
