@@ -82,7 +82,7 @@ So this model finds a spurious effect of \\(X\\) on \\(Y\\), indicated by the lo
 
 What about model 2:
 
-´´´python
+```python
 X2 = sm.add_constant(np.stack([x, a]).T)
 model_2 = sm.OLS(y, X2).fit()
 print(model_2.summary(xname=['const', 'x', 'a']))
@@ -116,7 +116,13 @@ Kurtosis:                       3.028   Cond. No.                         5.70
 
 This model seems to recognize the causal independence of \\(X\\) and \\(Y\\) correctly (large p-value for \\(X\\), suggesting the lack of significance).
 
+### Model 3: \\(Y \sim X + B\\)
 
+```python
+X3 = sm.add_constant(np.stack([x, b]).T)
+model_3 = sm.OLS(y, X3).fit()
+print(model_3.summary(xname=['const', 'x', 'b']))
+```
 
 
 
