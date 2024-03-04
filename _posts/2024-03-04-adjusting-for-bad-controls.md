@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Adjusting for "bad controls"
-categories: [r, python]
+categories: [python]
 ---
 
 In every statistical analysis, the selection of covariates in regression models is akin to navigating a labyrinth. 
@@ -10,7 +10,7 @@ However, this approach is not without pitfalls.
 Adding wrong or extraneous variables can distort results, introducing spurious effects and even reversing the signs of actual causal relationships.
 In the following, I will provide an example of how this can happen.
 
-Let's consider this example:
+Let's consider this structural graph:
 ![](/images/scm.png)
 
 In this example, we want to estimate the effect of \((X\)) on \((Y\)).
@@ -40,14 +40,14 @@ b = 1.7 * x + 0.8 * y
 
 ### Model 1: \\(Y \sim X\\)
 
-This is the simple model that regresses \\(Y\\) on \\(X\\)
+This is the simple model that regresses \\(Y\\) on \\(X\\):
 
  ```python
 X1 = sm.add_constant(x)
 model_1 = sm.OLS(y, X1).fit()
 ```
 
-This is the result:
+This results in
 
 ```python
 print(model_1.summary(xname=['const', 'x']))
@@ -90,6 +90,7 @@ model_2 = sm.OLS(y, X2).fit()
 print(model_2.summary(xname=['const', 'x', 'a']))
 ```
 
+
 ```
 OLS Regression Results                            
 ==============================================================================
@@ -128,6 +129,7 @@ model_3 = sm.OLS(y, X3).fit()
 print(model_3.summary(xname=['const', 'x', 'b']))
 ```
 
+
 ```
 OLS Regression Results                            
 ==============================================================================
@@ -165,6 +167,7 @@ X4 = sm.add_constant(np.stack([x, a, b]).T)
 model_4 = sm.OLS(y, X4).fit()
 print(model_4.summary(xname=['const', 'x', 'a', 'b']))
 ```
+
 
 ```
 OLS Regression Results                            
