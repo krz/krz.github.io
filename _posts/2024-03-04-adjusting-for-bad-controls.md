@@ -20,3 +20,57 @@ However, examining the model structure reveals a clear __causal independence__ b
 2. Then, we’ll add \((A\)) to this model: \((Y \sim X + A\))
 3. Next, we’ll fit a model without \((A\)), but with \((B\)): \((Y \sim X + B\))
 4. Finally, we’ll build a model with all four variables: \((Y \sim X + A + B\))
+
+Based on your intuition, which of the four models do you believe will accurately represent the causal independence between \((X\)) and \((Y\))?
+
+Let's generate some data:
+
+```python
+import numpy as np
+import statsmodels.api as sm
+np.random.seed(42)
+
+NSAMPLES = 3000
+
+a = np.random.randn(NSAMPLES)
+x = 2 * a + np.random.randn(NSAMPLES)
+y = 2 * a + np.random.randn(NSAMPLES)
+b = 1.7 * x + 0.8 * y
+```
+
+### Model 1
+
+ ```python
+X1 = sm.add_constant(x)
+model_1 = sm.OLS(y, X1).fit()
+
+print(model_1.summary(xname=['const', 'x']))
+```
+
+```
+OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.630
+Model:                            OLS   Adj. R-squared:                  0.630
+Method:                 Least Squares   F-statistic:                     5114.
+Date:                Mon, 04 Mar 2024   Prob (F-statistic):               0.00
+Time:                        12:59:41   Log-Likelihood:                -5173.1
+No. Observations:                3000   AIC:                         1.035e+04
+Df Residuals:                    2998   BIC:                         1.036e+04
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0465      0.025      1.874      0.061      -0.002       0.095
+x              0.8030      0.011     71.510      0.000       0.781       0.825
+==============================================================================
+Omnibus:                        3.944   Durbin-Watson:                   2.047
+Prob(Omnibus):                  0.139   Jarque-Bera (JB):                4.150
+Skew:                           0.043   Prob(JB):                        0.126
+Kurtosis:                       3.161   Cond. No.                         2.21
+==============================================================================
+```
+
+
+
