@@ -10,7 +10,7 @@ In this blog post, we’ll delve into the essentials of loading JSON data in Swi
 We’ll start by exploring how to load JSON data directly as a String—useful for quick tests or when dealing with small data payloads. 
 Then, we’ll advance to loading JSON from a file, which is a common scenario for apps that consume complex data structures or large datasets.
 
-# Loading JSON as a String
+## Loading JSON as a String
 
 In this example, we'll import the following JSON data set of current astronauts in space as a string.
 This data is avaible from [this repo of awesome JSON datasets.](https://github.com/jdorfman/awesome-json-datasets)
@@ -28,7 +28,7 @@ This data is avaible from [this repo of awesome JSON datasets.](https://github.c
 To do this, we first have to create a struct that coheres to the JSON hierarchical structure of the data.
 In this case, the hierarchy is an array of `people` that contains the `name` and `craft` of each astronaut.
 
-```
+```swift
 struct Astronauts: Codable {
     let people: [People]
 }
@@ -76,6 +76,42 @@ if let astronauts = try? decoder.decode(Astronauts.self, from: data) {
         }
 ```
 ![](/images/json1.png)
+
+## Load JSON from a file
+
+In this section we will load the exact same data, but from a file and not a string variable.
+First, copy the data to a file `astronauts.json` and add it to your Xcode project.
+
+In SwiftUI, you can use `Bundle` to access files bundled with your app, so we write an extension for it
+to decode JSON files:
+
+```swift
+extension Bundle {
+    func decode(_ file: String) -> Astronauts {
+        guard let url = self.url(forResource: file, withExtension: nil) else {
+            fatalError("Failed to locate \(file).")
+        }
+        
+        guard let data = try? Data(contentsOf: url) else {
+            fatalError("Failed to load \(file).")
+        }
+        
+        guard let loaded = try? JSONDecoder().decode(Astronauts.self, from: data) else {
+            fatalError("Failed to decode \(file).")
+        }
+        
+        return loaded
+    }
+}
+```
+
+This makes reading the data extremely easy:
+```swift
+let astronauts = Bundle.main.decode("astronauts.json")
+```
+and we can use the same `List`structure as previously to display the data.
+
+
 
 
 
