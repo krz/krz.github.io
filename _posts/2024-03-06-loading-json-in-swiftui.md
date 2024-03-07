@@ -41,3 +41,42 @@ struct People: Codable {
 
 Note the `Codable` modifier. It is a type alias for the Encodable and Decodable protocols. These protocols allow you to convert yourself into and out of an external representation, such as JSON.
 With Codable, you can use the JSONDecoder class to decode JSON data into Swift objects, and then assign those objects to properties in SwiftUI views. This way, you can load JSON data efficiently and update your user interface accordingly.
+
+Now we can import the data as a string:
+```swift
+let input = """
+{"people": [{"name": "Jasmin Moghbeli", "craft": "ISS"},
+{"name": "Andreas Mogensen", "craft": "ISS"},
+{"name": "Satoshi Furukawa", "craft": "ISS"},
+{"name": "Konstantin Borisov", "craft": "ISS"},
+{"name": "Oleg Kononenko", "craft": "ISS"},
+{"name": "Nikolai Chub", "craft": "ISS"},
+{"name": "Loral O'Hara", "craft": "ISS"}]}
+"""
+```
+
+and decode it:
+```swift
+let data = Data(input.utf8)
+let decoder = JSONDecoder()
+```
+and finally show the data:
+```swift
+if let astronauts = try? decoder.decode(Astronauts.self, from: data) {
+            List(astronauts.people, id: \.name) { person in
+                VStack(alignment: .leading) {
+                    Text(person.name)
+                        .font(.headline)
+                    Text(person.craft)
+                        .font(.subheadline)
+                }
+            }
+        } else {
+            Text("Failed to load astronauts.")
+        }
+```
+
+
+
+
+
