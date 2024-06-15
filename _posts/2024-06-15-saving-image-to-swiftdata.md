@@ -10,11 +10,11 @@ Enter SwiftData, a powerful framework introduced by Apple to streamline data man
 
 In this blog post, we will delve into a practical example of using SwiftData to save images selected by the user through a `PhotosPicker`. We will walk through the entire process, from setting up your data model to displaying a list of saved images with descriptions. By the end of this guide, you'll have a solid understanding of how to leverage SwiftData to enhance your app's functionality and provide a smooth user experience. Let's get started!
 
-### Requirements for Swift Data
+## Requirements for Swift Data
 
 Using SwiftCode requires the following steps:
 
-1. Define the class
+### 1. Define the class
 The class has to use the `@Model` macro and the `@Attribute(.externalStorage)` to save the image. Don't forget to import `SwiftData`.
 In our app, we want to save the image and a description of the image. The class looks like this:
 
@@ -39,7 +39,7 @@ class Item {
 }
 ```
 
-2. Add a modelContainer
+### 2. Add a modelContainer
 You need to add a `modelContainer` to the `WindowGroup` of your app:
 
 ```swift
@@ -57,10 +57,12 @@ struct PhotoRememberApp: App {
 }
 ```
 
-3. Add the modelContext Environment to your ContentView
+### 3. Add the modelContext Environment to your ContentView
 ```swift
 @Environment(\.modelContext) private var modelContext
 ```
+
+## The PhotosPicker
 
 To select a Photo, we define a `PhotosPicker`:
 ```swift
@@ -77,6 +79,8 @@ To select a Photo, we define a `PhotosPicker`:
                     }
                 }
 ```
+
+## Save the image
 
 Then we build a save Button that calls a function so save this image to SwiftData:
 
@@ -96,6 +100,8 @@ Then we build a save Button that calls a function so save this image to SwiftDat
         imageDescription = ""
     }
 ```
+
+## The complete app
 
 Let's put everything together:
 
