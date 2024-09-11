@@ -11,7 +11,7 @@ In this blog post, we’ll explore how to leverage causal-learn to identify and 
 providing a step-by-step guide to get you started on your causal discovery journey.
 
 # Data Generation
-First, let's generate some data:
+First, let's generate some data (inspired by this [notebook](https://github.com/PacktPublishing/Causal-Inference-and-Discovery-in-Python)):
 ```python
 import numpy as np
 from causallearn.search.FCMBased import lingam
@@ -67,7 +67,7 @@ make_dot(model.adjacency_matrix_, labels=nodes)
 ```
 ![image](https://github.com/user-attachments/assets/43f8ef77-8f37-4594-b513-abd1612ad73f)
 
-We can also use ``networkx` to visualize the result:
+We can also use `networkx` to visualize the result:
 ```python
 G = nx.DiGraph(model.adjacency_matrix_.T)
 nx.draw(G, 
@@ -76,6 +76,7 @@ nx.draw(G,
 ```
 ![image](https://github.com/user-attachments/assets/805ffa17-0ae0-4a85-96df-5219e2519cc3)
 
+We see that LiNGAM estimates the true DAG quite accurately!
 Another way to visualize the adjacency matrix is a heatmap:
 
 ```python
